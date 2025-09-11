@@ -1,0 +1,147 @@
+---
+title: "Tareita 1 de Rmd de Estadística y Probabilidad: Generación de Números Normales"
+author: "Diana Laura Pais Felipe"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    code_folding: show
+    theme: bootstrap
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Generación de números aleatorios normales
+
+## Generación de 10 VA normales(0,1)
+
+```{r}
+u<- rnorm(10,0,1); head(u,20)
+plot(u,col="blue")
+
+```
+
+## Generación de 100 VA normales(0,1)
+```{r}
+u<- rnorm(100,0,1); head(u,20)
+plot(u,col="lightblue")
+
+```
+
+## Generación de 1,000 VA normales(0,1)
+
+```{r}
+u<- rnorm(1000,0,1); head(u,20)
+plot(u,col="green")
+
+```
+
+## Generación de 5,000 VA normales(0,1)
+
+```{r}
+u<- rnorm(5000,0,1); head(u,20)
+plot(u,col="lightgreen")
+```
+
+## Generación de 15,000 VA normales(0,1)
+
+```{r}
+u<- rnorm(15000,0,1); head(u,20)
+plot(u,col="lightgreen")
+
+```
+
+## Generación de 20,000 VA normales(0,1)
+
+```{r}
+u<- rnorm(20000,0,1); head(u,20)
+plot(u,col="lightgreen")
+
+```
+
+## Generación de 25,000 VA normales(0,1)
+
+```{r}
+u<- rnorm(25000,0,1); head(u,20)
+plot(u,col="lightgreen")
+
+```
+
+## Generación de 50,000 VA normales(0,1)
+
+```{r}
+u<- rnorm(50000,0,1); head(u,20)
+plot(u,col="lightgreen")
+```
+
+# Extracción de muestras
+
+## Muestra 1
+```{r}
+muestra1<- sample(u,100,replace = FALSE)
+plot(muestra1,
+     main="Muestra de tamaño 100",
+     xlab="Elementos de la muestra",
+     ylab="Normales(0,1)",
+     col="purple")
+```
+
+### Histograma 1
+
+```{r}
+##---- Mejora del grafico ----
+miscoloresazules<- colorRampPalette(c("#F7FBFF", "#DEEBF7", "#C6DBEF",
+                                   "#9ECAE1", "#6BAED6", "#4292C6",
+                                   "#2171B5", "#08519C", "#08306B"))(20);
+hist(u,col = miscoloresazules,
+     main = 'Números aleatorios normales',
+     xlab="Valores de u",
+     ylab="Valores generados",)
+```
+```{r}
+hist(muestra1, col="lightblue")
+##---- Mejora del grafico ----
+miscoloresrosas<- colorRampPalette(c("#FFF0F5", "#FFD1DC", "#FFB6C1",
+                                         "#FF91A4", "#FF6B8B", "#FF4C6D",
+                                         "#FF2E50", "#E75480","#C2185B"))(25);
+hist(muestra1,col = miscoloresrosas,
+     main = 'Números aleatorios normales',
+     xlab="Valores de u",
+     ylab="Valores generados",)
+```
+
+## Muestra 2
+
+```{r}
+muestra2<- sample(u,250,replace = FALSE)
+plot(muestra1,
+     main="Muestra de tamaño 250",
+     xlab="Elementos de la muestra",
+     ylab="Normales(0,1)",
+     col="purple")
+```
+
+### Histograma 2
+
+
+```{r}
+miscoloresmorados<- colorRampPalette(c("#F3E5F5", "#E1BEE7", "#D1C4E9", "#C5CAE9","#B39DDB", "#9FA8DA", "#9575CD", "#7986CB","#7E57C2", "#673AB7", "#5E35B1", "#512DA8","#4527A0", "#311B92", "#283593", "#1A237E","#8E24AA", "#6A1B9A", "#4A148C", "#38006B"))(25);
+hist(u,col=miscoloresmorados,
+     main = 'Números aleatorios normales',
+     xlab="Valores de u",
+     ylab="Valores generados",)
+```
+
+```{r}
+##---- Mejora del grafico ----
+miscoloresmorados<- colorRampPalette(c("#F3E5F5", "#E1BEE7", "#D1C4E9", "#C5CAE9","#B39DDB", "#9FA8DA", "#9575CD", "#7986CB","#7E57C2", "#673AB7", "#5E35B1", "#512DA8","#4527A0", "#311B92", "#283593", "#1A237E","#8E24AA", "#6A1B9A", "#4A148C", "#38006B"))(20);
+hist(muestra2,col = miscoloresmorados,
+     main = 'Números aleatorios normales',
+     xlab="Valores de u",
+     ylab="Valores generados",)
+```
