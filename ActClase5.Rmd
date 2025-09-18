@@ -1,0 +1,351 @@
+---
+title: "Clase 5 de Estadística y Probabilidad   17-09-2025"
+author: "Diana Laura Pais Felipe     Matrícula:23-002-0030"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    code_folding: show
+    theme: bootstrap
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Generación de números aleatorios normales
+
+## Gráficas de normales (0,1)
+
+### Generación de 1,000 VA normales(0,1)
+
+```{r}
+n1<- rnorm(1000,0,1); head(n1,20)
+plot(n1,col="pink")
+
+```
+
+### Generación de 15,000 VA normales(0,1)
+```{r}
+n2<- rnorm(15000,0,1); head(n2,20)
+plot(n2,col="lightblue")
+
+```
+
+
+### Generación de 30,000 VA normales(0,1)
+
+```{r}
+n3<- rnorm(30000,0,1); head(n3,20)
+plot(n1,col="yellow")
+
+```
+
+### Generación de 50,000 VA normales(0,1)
+
+```{r}
+n4<- rnorm(15000,0,1); head(n4,20)
+plot(n2,col="blue")
+
+```
+
+### Generación de 75,000 VA normales(0,1)
+
+```{r}
+n5<- rnorm(75000,0,1); head(n5,20)
+plot(n3,col="lightgreen")
+```
+
+### Generación de 100,000 VA normales(0,1)
+
+```{r}
+n6<- rnorm(100000,0,1); head(n6,20)
+plot(n3,col="orange")
+```
+
+```{r}
+n4<- rnorm(50000,0,1);
+n5<- rnorm(75000,0,1);
+n6<- rnorm(100000,0,1);
+```
+
+### Comparación de gráficas de dispersión
+
+```{r}
+par(mfrow=c(2,3))
+plot(n1,col="pink", 
+     main="1,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+plot(n2,col="lightblue",
+     main="15,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+plot(n3,col="yellow",
+     main="30,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+plot(n4,col="blue", 
+     main="50,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+plot(n5,col="lightgreen",
+     main="75,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+plot(n6,col="orange",
+     main="100,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+```
+
+### Comparación de histogramas
+
+```{r}
+par(mfrow=c(2,3))
+hist(n1,col="pink", 
+     main="Histograma 1,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+hist(n2,col="lightblue", 
+     main="Histograma 15,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+hist(n3,col="yellow", 
+     main="Histograma 30,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+hist(n4,col="blue", 
+     main="Histograma 50,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+hist(n5,col="lightgreen", 
+     main="Histograma 75,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+hist(n6,col="orange", 
+     main="Histograma 100,000 VA N(0,1)",
+     xlab="Num de VA",
+     ylab="N(0,1)")
+```
+
+```{r}
+x <- seq(-1, 1, length = 100)
+curve(dnorm(x, mean=0, sd=1), 
+      from=-4, to=4, lwd=3, col="blue",
+      main = "N(0, 1)", xlab = "X", ylab = "f(x)")
+
+```  
+
+### Comparación de Histogramas para n1, n2, n3
+
+```{r}
+par(mfrow = c(1, 4))
+hist(n1,main="Histograma 1,000 VA N(0,1)",
+     col = "lightgreen",
+     xlab = "VA generadas",
+     ylab = "N(0,1)")
+hist(n2,main="Histograma 15,000 VA N(0,1)",
+     col = "orange",
+     xlab = "VA generadas",
+     ylab = "N(0,1)")
+hist(n3,main="Histograma 30,000 VA N(0,1)",
+     col = "brown",
+     xlab = "VA generadas",
+     ylab = "N(0,1)")
+x <- seq(-1, 1, length = 100)
+curve(dnorm(x, mean=0, sd=1), 
+      from=-3, to=3, lwd=2, col="blue",
+      main = "Gráfica de la N(0, 1)", xlab = "X", ylab = "f(x)")
+```
+
+## Gráficas de normales (-1,1)
+
+```{r}
+n1<- rnorm(1000,-1,1);
+n2<- rnorm(15000,-1,1);
+n3<- rnorm(30000,-1,1);
+n4<- rnorm(50000,-1,1);
+n5<- rnorm(75000,-1,1);
+n6<- rnorm(100000,-1,1);
+```
+
+### Comparación de gráficas de dispersión
+
+```{r}
+par(mfrow=c(2,3))
+plot(n1,col="pink", 
+     main="1,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+plot(n2,col="lightblue",
+     main="15,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+plot(n3,col="yellow",
+     main="30,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+plot(n4,col="blue", 
+     main="50,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+plot(n5,col="lightgreen",
+     main="75,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+plot(n6,col="orange",
+     main="100,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+```
+
+### Comparación de histogramas
+
+```{r}
+par(mfrow=c(2,3))
+hist(n1,col="pink", 
+     main="Histograma 1,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+hist(n2,col="lightblue", 
+     main="Histograma 15,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+hist(n3,col="yellow", 
+     main="Histograma 30,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+hist(n4,col="blue", 
+     main="Histograma 50,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+hist(n5,col="lightgreen", 
+     main="Histograma 75,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+hist(n6,col="orange", 
+     main="Histograma 100,000 VA N(-1,1)",
+     xlab="Num de VA",
+     ylab="N(-1,1)")
+```
+
+### Curva
+
+```{r}
+x <- seq(-1, 1, length = 100)
+curve(dnorm(x, mean=0, sd=1), 
+      from=-4, to=4, lwd=3, col="blue",
+      main = "N(0, 1)", xlab = "X", ylab = "f(x)")
+```
+
+## Gráficas de normales (0,2)
+
+```{r}
+n1<- rnorm(1000,0,2);
+n2<- rnorm(15000,0,2);
+n3<- rnorm(30000,0,2);
+n4<- rnorm(50000,0,2);
+n5<- rnorm(75000,0,2);
+n6<- rnorm(100000,0,2);
+```
+
+### Comparación de gráficas de dispersión
+
+```{r}
+par(mfrow = c(2, 3))
+hist(n1,main="Histograma 1,000 VA N(0,2)",
+     col = "pink",
+     xlab = "VA generadas",ylab = "N(0,2)")
+hist(n2,main="Histograma 15,000 VA N(0,2)",
+     col = "lightblue",
+     xlab = "VA generadas",ylab = "N(0,2)")
+hist(n3,main="Histograma 30,000 VA N(0,2)",
+     col = "yellow",
+     xlab = "VA generadas",ylab = "N(0,2)")
+hist(n4,main="Histograma 50,000 VA N(-1,1)",
+     col = "blue",
+     xlab = "VA generadas",ylab = "N(0,2)")
+hist(n5,main="Histograma 75,000 VA N(-1,1)",
+     col = "lightgreen",
+     xlab = "VA generadas",ylab = "N(0,2)")
+hist(n6,main="Histograma 100,000 VA N(0,2)",
+     col = "orange",
+     xlab = "VA generadas",ylab = "N(0,2)")
+```
+
+### Comparación de histogramas
+
+```{r}
+par(mfrow=c(2,3))
+hist(n1,col="pink", 
+     main="Histograma 1,000 VA N(0,2)",
+     xlab="Num de VA",
+     ylab="N(0,2)")
+hist(n2,col="lightblue", 
+     main="Histograma 15,000 VA N(0,2)",
+     xlab="Num de VA",
+     ylab="N(0,2)")
+hist(n3,col="yellow", 
+     main="Histograma 30,000 VA N(0,2)",
+     xlab="Num de VA",
+     ylab="N(0,2)")
+hist(n4,col="blue", 
+     main="Histograma 50,000 VA N(0,2)",
+     xlab="Num de VA",
+     ylab="N(0,2)")
+hist(n5,col="lightgreen", 
+     main="Histograma 75,000 VA N(0,2)",
+     xlab="Num de VA",
+     ylab="N(0,2)")
+hist(n6,col="orange", 
+     main="Histograma 100,000 VA N(0,2)",
+     xlab="Num de VA",
+     ylab="N(0,2)")
+```
+
+
+## Grafica  de Normales N(mu,sigma^2)
+
+```{r}
+media <- 0
+desvstd <- 2.5
+q1 <- 1000; q2 <- 10000; q3 <- 30000;
+q4 <- 50000; q5 <- 75000; q6 <- 100000
+n1 <- rnorm(q1,media,desvstd);
+n2 <- rnorm(q2,media,desvstd); 
+n3 <- rnorm(q3,media,desvstd);
+n4 <- rnorm(q4,media,desvstd);
+n5 <- rnorm(q5,media,desvstd); 
+n6 <- rnorm(q6,media,desvstd);
+mititulo1 <- paste0("Histograma de ",q1," VA N(",media,",",desvstd,")")
+mititulo2 <- paste0("Histograma de ",q2," VA N(",media,",",desvstd,")")
+mititulo3 <- paste0("Histograma de ",q3," VA N(",media,",",desvstd,")")
+mititulo4 <- paste0("Histograma de ",q4," VA N(",media,",",desvstd,")")
+mititulo5 <- paste0("Histograma de ",q5," VA N(",media,",",desvstd,")")
+mititulo6 <- paste0("Histograma de ",q6," VA N(",media,",",desvstd,")")
+etiquetay <- paste0("N(",media,",",desvstd,")")
+
+par(mfrow = c(2, 3))
+hist(n1,main=mititulo1,
+     col = "pink",
+     xlab = "VA generadas",ylab = etiquetay)
+hist(n2,main=mititulo2,
+     col = "lightblue",
+     xlab = "VA generadas",ylab = etiquetay)
+hist(n3,main=mititulo3,
+     col = "yellow",
+     xlab = "VA generadas",ylab = etiquetay)
+hist(n4,main=mititulo4,
+     col = "blue",
+     xlab = "VA generadas",ylab = etiquetay)
+hist(n5,main=mititulo5,
+     col = "lightgreen",
+     xlab = "VA generadas",ylab = etiquetay)
+hist(n6,main=mititulo6,
+     col = "orange",
+     xlab = "VA generadas",ylab = etiquetay)
+```
