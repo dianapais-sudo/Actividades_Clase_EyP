@@ -1,0 +1,5327 @@
+---
+title: "Tarea 1 Estadística y Probabilidad"
+author: "Diana Laura Pais Felipe     Matrícula:23-002-0030"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    code_folding: show
+    theme: bootstrap
+  word_document: default
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Ejercicio 6: Variables Nominales
+
+## Ejercicio 6.1 Sexo
+
+### Datos
+
+```{r}
+sexo <- c("NA", "NA", "NA", "Femenino", "NA", "Femenino", "Femenino", "Femenino", "NA", "Masculino","Femenino", "Femenino", "Masculino", "Femenino", "NA", "Masculino", "NA", "NA", "Masculino", "Masculino", "Masculino", "Masculino", "NA", "Femenino", "NA")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(sexo)
+```
+
+Al ser variables de tipo Nominal no se pueden ordenar ni se pueden obtener los deciles ni cuartiles.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(sexo) #Datos
+sort(sexo) #Datos ordenados por clase
+contador <- table(sexo) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(sexo)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre sexo en barras",
+        xlab="Sexo",
+        ylab="Frecuencias",
+        ylim=c(0,12),
+        )
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+tabla <- table(sexo); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de sexos",
+    xlab = "Sexo",
+    ylab="Porcentaje (%)",
+    ylim=c(0,50),
+        )
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de sexos",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+#---- Fin ----
+```
+
+
+
+
+
+## Ejercicio 6.2 Nacionalidad
+
+### Datos
+
+```{r}
+nacionalidad <- c("Boliviana", "Peruana", "Venezolana", "Cubana", "Mexicana", "Colombiana", "Colombiana", "Brasileña", "Colombiana", "Venezolana", "Chilena", "Argentina", "Mexicana", "Mexicana", "Argentina", "Mexicana", "Argentina", "Brasileña", "Mexicana", "Uruguaya", "Argentina", "Argentina", "Colombiana", "Cubana", "Boliviana", "Peruana", "Boliviana", "Boliviana", "Peruana", "Uruguaya", "Chilena", "Uruguaya", "Venezolana", "Uruguaya", "Argentina", "Venezolana", "Uruguaya", "Cubana", "Venezolana", "Cubana", "Chilena", "Argentina", "Peruana",
+"Boliviana", "Cubana", "Venezolana", "Colombiana", "Mexicana", "Uruguaya", "Argentina")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(nacionalidad)
+```
+
+Al ser variables de tipo Nominal no se pueden ordenar ni se pueden obtener los deciles ni cuartiles.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(nacionalidad) #Datos
+sort(nacionalidad) #Datos ordenados por clase
+contador <- table(nacionalidad) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(nacionalidad)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(8,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre nacionalidades en barras",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,10),
+        )
+title(xlab="Nacionalidades",line=6)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(8,4,4,2))
+tabla <- table(nacionalidad); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de nacionalidades",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,20),
+        )
+
+title(xlab="Nacionalidades",line=6)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de nacionalidades",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+#---- Fin ----
+```
+
+
+
+
+
+## Ejercicio 6.3 Color de ojos
+
+### Datos
+
+```{r}
+color_ojos <- c("Gris", "Azul", "Ambar", "Negro", "Avellana", "Café", "Avellana", "Azul", "Verde",
+"Ambar", "Avellana", "Café", "Café", "Azul", "Verde", "Azul", "Avellana", "Verde", "Verde", "Verde",
+"Gris", "Negro", "Avellana", "Negro", "Gris", "Negro", "Avellana", "Azul", "Ambar", "Verde")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(color_ojos)
+```
+
+Al ser variables de tipo Nominal no se pueden ordenar ni se pueden obtener los deciles ni cuartiles.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(color_ojos) #Datos
+sort(color_ojos) #Datos ordenados por clase
+contador <- table(color_ojos) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(color_ojos)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre color de ojos en barras",
+        xlab="Color de ojos",
+        ylab="Frecuencias",
+        ylim=c(0,8),
+        )
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+tabla <- table(color_ojos); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de color de ojos",
+    xlab = "Color de ojos",
+    ylab="Porcentaje (%)",
+    ylim=c(0,25),
+        )
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de color de ojos",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+#---- Fin ----
+```
+
+
+
+
+
+## Ejercicio 6.4 Marca de celular
+
+### Datos
+
+```{r}
+marca <- c("Apple", "Samsung", "LG", "Huawei", "OnePlus", "Sony", "Apple", "Samsung",
+"Huawei", "Huawei", "Nokia", "OnePlus", "Motorola", "Xiaomi", "Samsung", "Apple", "Apple", "Motorola",
+"Samsung", "Samsung", "Huawei", "Motorola", "Nokia", "OnePlus", "Huawei", "Huawei",
+"Apple", "LG", "Apple", "Xiaomi", "LG", "OnePlus", "OnePlus", "LG", "Sony", "Samsung", "Apple",
+"Xiaomi", "Oppo", "Motorola", "LG", "Samsung", "Motorola", "Samsung", "Nokia", "OnePlus", "OnePlus", "Oppo", "Sony", "Nokia", "Huawei", "LG", "Sony", "Xiaomi", "LG", "Huawei", "LG", "Nokia",
+"Xiaomi", "Sony", "OnePlus", "LG", "Xiaomi", "OnePlus", "Oppo", "Nokia", "Huawei", "Xiaomi", "Oppo",
+"Oppo")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(marca)
+```
+
+Al ser variables de tipo Nominal no se pueden ordenar ni se pueden obtener los deciles ni cuartiles.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(marca) #Datos
+sort(marca) #Datos ordenados por clase
+contador <- table(marca) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(marca)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(8,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre marca de celulares en barras",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,10),
+        )
+title(xlab="Marca",line=6)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(8,4,4,2))
+tabla <- table(marca); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de marcas de celulares",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,15),
+        )
+
+title(xlab="Marca",line=6)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de marcas de celulares",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+#---- Fin ----
+```
+
+
+
+
+
+## Ejercicio 6.5 Estado civil
+
+### Datos
+
+```{r}
+estado <- c("Viudo", "Viudo", "Union", "libre", "Soltero", "Viudo", "Union libre", "Divorciado",
+"Casado", "Union libre", "Viudo", "Viudo", "Soltero", "Divorciado", "Divorciado", "Divorciado",
+"Union libre", "Casado", "Union libre", "Casado", "Soltero", "Viudo", "Casado", "Casado", "Divorciado",
+"Union libre", "Soltero", "Divorciado", "Divorciado", "Casado", "Union libre", "Soltero",
+"Viudo", "Viudo", "Soltero", "Divorciado", "Viudo", "Viudo", "Soltero", "Union libre", "Divorciado")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(estado)
+```
+
+Al ser variables de tipo Nominal no se pueden ordenar ni se pueden obtener los deciles ni cuartiles.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(estado) #Datos
+sort(estado) #Datos ordenados por clase
+contador <- table(estado) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(estado)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(8,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre estado civil en barras",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,12),
+        )
+title(xlab="Estado Civil",line=6)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(8,4,4,2))
+tabla <- table(estado); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de estado civil",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,30),
+        )
+
+title(xlab="Estado Civil",line=6)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de estado civil",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+#---- Fin ----
+```
+
+
+
+
+
+
+# Ejercicio 7: Variables Ordinales
+
+## Ejercicio 7.1 Nivel educativo
+
+### Datos
+
+```{r}
+nivel_educativo <- c("posdoctorado", "preparatoria", "preparatoria", "doctorado", "primaria", "doctorado", "preparatoria", "secundaria", "preparatoria", "preparatoria", "primaria", "doctorado",
+"secundaria", "secundaria", "secundaria", "licenciatura", "doctorado", "primaria", "maestria", "posdoctorado", "maestria", "preparatoria", "posdoctorado", "doctorado", "preparatoria", "doctorado",
+"maestria", "primaria", "licenciatura", "secundaria", "maestria", "posdoctorado", "doctorado", "licenciatura", "doctorado", "posdoctorado", "maestria", "primaria", "secundaria", "preparatoria")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(nivel_educativo)
+```
+
+Al ser variables de tipo Ordinal se pueden ordenar bajo un discriminante elegido, en este caso, de menor a mayor preparación académica.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(nivel_educativo) #Datos
+sort(nivel_educativo) #Datos ordenados por clase
+contador <- table(nivel_educativo) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(nivel_educativo)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+mediana_academica <- function(nivel_educativo) {
+  niveles <- c("primaria", "secundaria", "preparatoria", "licenciatura", 
+               "maestria", "doctorado", "posdoctorado") #Con esto ordenamos nuestras clases de menor a mayor nivel académico
+  
+  # Convertir a numérico, ordenar y reconvertir a texto
+  numerico_ord <- sort(sapply(nivel_educativo, function(x) which(niveles == x)))
+  (numerico_ord)
+  texto_ord <- niveles[numerico_ord]
+  cat("Datos ordenados:   ", paste(texto_ord, collapse = ", "), "\n")
+  
+  # Calcular mediana
+  mediana<- median(numerico_ord)
+  resultado <- niveles[round(mediana)]
+  
+  cat("La mediana es:", resultado, "\n")
+  return(resultado)
+}
+
+resultado <- mediana_academica(nivel_educativo)
+
+```
+
+#### Media
+
+A pesar de tener datos que se pueden ordenar, no se puede tener una media debido a que no tenemos datos numéricos con los cuales calcular.
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+niveles <- c("primaria", "secundaria", "preparatoria", "licenciatura", 
+             "maestria", "doctorado", "posdoctorado")
+
+numerico <- sapply(nivel_educativo, function(x) which(niveles == x))
+numerico_ord <- sort(numerico)
+
+q1 <- niveles[round(quantile(numerico_ord, 0.25))]
+(q1)
+q2 <- niveles[round(quantile(numerico_ord, 0.50))]
+(q2)
+q3 <- niveles[round(quantile(numerico_ord, 0.75))]
+(q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(nivel_educativo);
+(mi_min)
+mi_max <- max(nivel_educativo);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+par(mar=c(12,4,4,2))
+boxplot(numerico_ord, horizontal = TRUE, col = "lightblue", xaxt = "n")
+axis(1, at = 1:7, labels = niveles, las=2)
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(8,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre niveles educativos en barras",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,12),
+        )
+title(xlab="Nivel educativo",line=6)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(8,4,4,2))
+tabla <- table(nivel_educativo); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de niveles educativos",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,30),
+        )
+
+title(xlab="Nivel educativo",line=6)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de niveles educativos",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+```
+
+#### Gráfica de ovija
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(8,4,4,2))
+frec_acum <- cumsum(table(factor(nivel_educativo, levels = niveles)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de Niveles Académicos",
+     xlab = "",
+     names.arg="",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+title(xlab="Nivel Académico",line=6)
+axis(1, at = 1:7, labels = niveles, las = 2)  # el comando las = 2 hace las etiquetas de las clases verticales
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+
+
+## Ejercicio 7.2 Nivel educativo
+
+### Datos
+
+```{r}
+nivel_satisfaccion <- c("satisfecho", "muy satisfecho", "muy insatisfecho", "neutral", "muy satisfecho", "muy insatisfecho", "muy satisfecho", "insatisfecho", "muy insatisfecho", "insatisfecho", "muy satisfecho", "insatisfecho", "muy satisfecho", "muy satisfecho", "mas o menos insatisfecho", "insatisfecho", "satisfecho", "muy satisfecho", "neutral", "mas o menos insatisfecho", "muy insatisfecho", "mas o menos satisfecho", "insatisfecho", "neutral", "mas o menos satisfecho", "satisfecho", "mas o menos satisfecho", "satisfecho", "neutral", "satisfecho", "muy insatisfecho", "muy insatisfecho", "neutral", "satisfecho", "insatisfecho", "mas o menos satisfecho", "mas o menos insatisfecho", "muy insatisfecho", "neutral", "neutral", "satisfecho", "neutral", "insatisfecho", "mas o menos insatisfecho", "mas o menos insatisfecho", "insatisfecho", "mas o menos satisfecho", "satisfecho", "neutral", "insatisfecho", "insatisfecho", "muy insatisfecho", "muy satisfecho", "mas o menos satisfecho", "mas o menos satisfecho")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(nivel_satisfaccion)
+```
+
+Al ser variables de tipo Ordinal se pueden ordenar bajo un discriminante elegido, en este caso, de menor a mayor nivel de satisfacción.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(nivel_satisfaccion) #Datos
+sort(nivel_satisfaccion) #Datos ordenados por clase
+contador <- table(nivel_satisfaccion) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(nivel_satisfaccion)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+mediana_satisfaccion <- function(nivel_satisfaccion) {
+  niveles <- c("muy insatisfecho", "insatisfecho", "mas o menos insatisfecho", "neutral", 
+               "mas o menos satisfecho", "satisfecho", "muy satisfecho") #Con esto ordenamos nuestras clases de menor a mayor nivel de satisfacción
+  
+  # Convertir a numérico, ordenar y reconvertir a texto
+  numerico_ord <- sort(sapply(nivel_satisfaccion, function(x) which(niveles == x)))
+  (numerico_ord)
+  texto_ord <- niveles[numerico_ord]
+  cat("Datos ordenados:   ", paste(texto_ord, collapse = ", "), "\n")
+  
+  # Calcular mediana
+  mediana<- median(numerico_ord)
+  resultado <- niveles[round(mediana)]
+  
+  cat("La mediana es:", resultado, "\n")
+  return(resultado)
+}
+
+resultado <- mediana_satisfaccion(nivel_satisfaccion)
+
+```
+
+#### Media
+
+A pesar de tener datos que se pueden ordenar, no se puede tener una media debido a que no tenemos datos numéricos con los cuales calcular.
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+niveles <- c("muy insatisfecho", "insatisfecho", "mas o menos insatisfecho", "neutral", 
+               "mas o menos satisfecho", "satisfecho", "muy satisfecho")
+
+numerico <- sapply(nivel_satisfaccion, function(x) which(niveles == x))
+numerico_ord <- sort(numerico)
+
+q1 <- niveles[round(quantile(numerico_ord, 0.25))]
+(q1)
+q2 <- niveles[round(quantile(numerico_ord, 0.50))]
+(q2)
+q3 <- niveles[round(quantile(numerico_ord, 0.75))]
+(q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(nivel_satisfaccion);
+(mi_min)
+mi_max <- max(nivel_satisfaccion);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+par(mar=c(12,4,4,2))
+boxplot(numerico_ord, horizontal = TRUE, col = "lightblue", xaxt = "n")
+axis(1, at = 1:7, labels = niveles, las=2)
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(12,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre niveles de satisfacción en barras",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,12),
+        )
+title(xlab="Nivel de satisfacción",line=10)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(12,4,4,2))
+tabla <- table(nivel_satisfaccion); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de niveles de satisfacción",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,30),
+        )
+
+title(xlab="Nivel de satisfacción",line=10)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de niveles de satisfacción",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+```
+
+#### Gráfica de ovija
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(14,4,4,2))
+frec_acum <- cumsum(table(factor(nivel_satisfaccion, levels = niveles)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de Niveles de satisfacción",
+     xlab = "",
+     names.arg="",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+title(xlab="Nivel de satisfacción",line=12)
+axis(1, at = 1:7, labels = niveles, las = 2)  # el comando las = 2 hace las etiquetas de las clases verticales
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+
+
+## Ejercicio 7.3 Grado de dolor
+
+### Datos
+
+```{r}
+grado_dolor <- c("severo", "leve", "leve", "severo", "leve", "leve", "leve", "moderado", "moderado",
+"moderado", "moderado", "severo", "severo", "moderado", "leve", "severo", "leve", "severo", "severo",
+"severo", "leve", "moderado", "severo", "severo", "leve", "leve", "leve", "severo", "severo", "leve")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(grado_dolor)
+```
+
+Al ser variables de tipo Ordinal se pueden ordenar bajo un discriminante elegido, en este caso, de menor a mayor nivel de satisfacción.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(grado_dolor) #Datos
+sort(grado_dolor) #Datos ordenados por clase
+contador <- table(grado_dolor) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(grado_dolor)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+mediana_dolor <- function(grado_dolor) {
+  niveles <- c("leve", "moderado", "severo") #Con esto ordenamos nuestras clases de menor a mayor grado de dolor
+  
+  # Convertir a numérico, ordenar y reconvertir a texto
+  numerico_ord <- sort(sapply(grado_dolor, function(x) which(niveles == x)))
+  (numerico_ord)
+  texto_ord <- niveles[numerico_ord]
+  cat("Datos ordenados:   ", paste(texto_ord, collapse = ", "), "\n")
+  
+  # Calcular mediana
+  mediana<- median(numerico_ord)
+  resultado <- niveles[round(mediana)]
+  
+  cat("La mediana es:", resultado, "\n")
+  return(resultado)
+}
+
+resultado <- mediana_dolor(grado_dolor)
+
+```
+
+#### Media
+
+A pesar de tener datos que se pueden ordenar, no se puede tener una media debido a que no tenemos datos numéricos con los cuales calcular.
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+niveles <- c("leve", "moderado", "severo")
+
+numerico <- sapply(grado_dolor, function(x) which(niveles == x))
+numerico_ord <- sort(numerico)
+
+q1 <- niveles[round(quantile(numerico_ord, 0.25))]
+(q1)
+q2 <- niveles[round(quantile(numerico_ord, 0.50))]
+(q2)
+q3 <- niveles[round(quantile(numerico_ord, 0.75))]
+(q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(grado_dolor);
+(mi_min)
+mi_max <- max(grado_dolor);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+par(mar=c(8,4,4,2))
+boxplot(numerico_ord, horizontal = TRUE, col = "lightblue", xaxt = "n")
+axis(1, at = 1:3, labels = niveles)
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(8,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre grado de dolor",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,15),
+        )
+title(xlab="Grado de dolor",line=4)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-1.5,
+     labels=names(contador),
+     srt=0,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(8,4,4,2))
+tabla <- table(grado_dolor); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de grado de dolor",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,50),
+        )
+
+title(xlab="Grado de dolor",line=4)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-2.5,
+     labels=names(contador),
+     srt=0,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de grado de dolor",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+```
+
+#### Gráfica de ovija
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(14,4,4,2))
+frec_acum <- cumsum(table(factor(grado_dolor, levels = niveles)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de grado de dolor",
+     xlab = "",
+     names.arg="",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+title(xlab="Grado de dolor",line=6)
+axis(1, at = 1:3, labels = niveles)
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+
+## Ejercicio 7.4 Reseña de hoteles
+
+### Datos
+
+```{r}
+resena_hotel <- c("4 estrellas", "5 estrellas", "1.5 estrellas", "4.5 estrellas", "5 estrellas", "4.5 estrellas", "2.5 estrellas", "4 estrellas", "4.5 estrellas", "1.5 estrellas", "3.5 estrellas", "1 estrella", "3.5 estrellas", "3 estrellas", "5 estrellas", "1.5 estrellas", "2 estrellas", "2 estrellas", "1.5 estrellas", "4.5 estrellas", "4.5 estrellas", "1.5 estrellas", "3.5 estrellas", "4 estrellas", "1 estrella", "4 estrellas", "4.5 estrellas", "3.5 estrellas", "1 estrella", "4 estrellas", "4 estrellas", "2 estrellas", "1 estrella", "4.5 estrellas", "1 estrella")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(resena_hotel)
+```
+
+Al ser variables de tipo Ordinal se pueden ordenar bajo un discriminante elegido, en este caso, de menor a mayor puntaje en las reseñas de un hotel.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(resena_hotel) #Datos
+sort(resena_hotel) #Datos ordenados por clase
+contador <- table(resena_hotel) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(resena_hotel)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+mediana_hotel <- function(resena_hotel) {
+  niveles <- c("1 estrella", "1.5 estrellas", "2 estrellas", "2.5 estrellas", 
+               "3 estrellas", "3.5 estrellas", "4 estrellas", "4.5 estrellas", "5 estrellas") #Con esto ordenamos nuestras clases de menor a mayor puntaje en reseñas de hoteles
+  
+  # Convertir a numérico, ordenar y reconvertir a texto
+  numerico_ord <- sort(sapply(resena_hotel, function(x) which(niveles == x)))
+  (numerico_ord)
+  texto_ord <- niveles[numerico_ord]
+  cat("Datos ordenados:   ", paste(texto_ord, collapse = ", "), "\n")
+  
+  # Calcular mediana
+  mediana<- median(numerico_ord)
+  resultado <- niveles[round(mediana)]
+  
+  cat("La mediana es:", resultado, "\n")
+  return(resultado)
+}
+
+resultado <- mediana_hotel(resena_hotel)
+
+```
+
+#### Media
+
+A pesar de tener datos que se pueden ordenar, no se puede tener una media debido a que no tenemos datos numéricos con los cuales calcular.
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+niveles <- c("1 estrella", "1.5 estrellas", "2 estrellas", "2.5 estrellas", 
+               "3 estrellas", "3.5 estrellas", "4 estrellas", "4.5 estrellas", "5 estrellas")
+
+numerico <- sapply(resena_hotel, function(x) which(niveles == x))
+numerico_ord <- sort(numerico)
+
+q1 <- niveles[round(quantile(numerico_ord, 0.25))]
+(q1)
+q2 <- niveles[round(quantile(numerico_ord, 0.50))]
+(q2)
+q3 <- niveles[round(quantile(numerico_ord, 0.75))]
+(q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(resena_hotel);
+(mi_min)
+mi_max <- max(resena_hotel);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+par(mar=c(12,4,4,2))
+boxplot(numerico_ord, horizontal = TRUE, col = "lightblue", xaxt = "n")
+axis(1, at = 1:9, labels = niveles, las=2)
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(12,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre reseñas de hoteles en barras",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,12),
+        )
+title(xlab="Reseñas de hoteles",line=10)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(12,4,4,2))
+tabla <- table(resena_hotel); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de reseña de hoteles",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,30),
+        )
+
+title(xlab="Reseñas de hoteles",line=10)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de reseña de hoteles",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+```
+
+#### Gráfica de ovija
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(14,4,4,2))
+frec_acum <- cumsum(table(factor(resena_hotel, levels = niveles)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de reseña de hoteles",
+     xlab = "",
+     names.arg="",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+title(xlab="Reseña de hoteles",line=8)
+axis(1, at = 1:9, labels = niveles, las = 2)  # el comando las = 2 hace las etiquetas de las clases verticales
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+## Ejercicio 7.5 Rangos
+
+### Datos
+
+```{r}
+rangos <- c("Principiante", "Principiante", "Aprendiz", "Intermedio", "Experto", "Intermedio", "Experto", "Aprendiz", "Principiante", "Avanzado", "Intermedio", "Experto", "Experto", "Experto", "Avanzado", "Intermedio", "Intermedio", "Principiante", "Principiante", "Principiante", "Principiante", "Principiante", "Intermedio", "Aprendiz", "Aprendiz", "Aprendiz", "Aprendiz", "Intermedio", "Aprendiz", "Principiante", "Intermedio", "Avanzado", "Avanzado", "Intermedio", "Avanzado", "Principiante", "Intermedio", "Avanzado", "Intermedio", "Avanzado")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(rangos)
+```
+
+Al ser variables de tipo Ordinal se pueden ordenar bajo un discriminante elegido, en este caso, de menor a mayor puntaje en las reseñas de un hotel.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(rangos) #Datos
+sort(rangos) #Datos ordenados por clase
+contador <- table(rangos) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(rangos)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+mediana_rangos <- function(rangos) {
+  niveles <- c("Principiante", "Aprendiz", "Intermedio", "Avanzado", "Experto") #Con esto ordenamos nuestras clases de menor a mayor rango
+  
+  # Convertir a numérico, ordenar y reconvertir a texto
+  numerico_ord <- sort(sapply(rangos, function(x) which(niveles == x)))
+  (numerico_ord)
+  texto_ord <- niveles[numerico_ord]
+  cat("Datos ordenados:   ", paste(texto_ord, collapse = ", "), "\n")
+  
+  # Calcular mediana
+  mediana<- median(numerico_ord)
+  resultado <- niveles[round(mediana)]
+  
+  cat("La mediana es:", resultado, "\n")
+  return(resultado)
+}
+
+resultado <- mediana_rangos(rangos)
+
+```
+
+#### Media
+
+A pesar de tener datos que se pueden ordenar, no se puede tener una media debido a que no tenemos datos numéricos con los cuales calcular.
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+niveles <- c("Principiante", "Aprendiz", "Intermedio", "Avanzado", "Experto")
+
+numerico <- sapply(rangos, function(x) which(niveles == x))
+numerico_ord <- sort(numerico)
+
+q1 <- niveles[round(quantile(numerico_ord, 0.25))]
+(q1)
+q2 <- niveles[round(quantile(numerico_ord, 0.50))]
+(q2)
+q3 <- niveles[round(quantile(numerico_ord, 0.75))]
+(q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(rangos);
+(mi_min)
+mi_max <- max(rangos);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+par(mar=c(12,4,4,2))
+boxplot(numerico_ord, horizontal = TRUE, col = "lightblue", xaxt = "n")
+axis(1, at = 1:5, labels = niveles, las=2)
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(12,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre rangos en barras",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,15),
+        )
+title(xlab="Rangos",line=10)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(12,4,4,2))
+tabla <- table(rangos); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de rangos",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,40),
+        )
+
+title(xlab="Rangos",line=10)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.1,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de Rangos",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+```
+
+#### Gráfica de ovija
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(14,4,4,2))
+frec_acum <- cumsum(table(factor(rangos, levels = niveles)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de rangos",
+     xlab = "",
+     names.arg="",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+title(xlab="Rangos",line=8)
+axis(1, at = 1:5, labels = niveles, las = 2)  # el comando las = 2 hace las etiquetas de las clases verticales
+#---- Fin ----
+```
+
+
+
+
+
+
+# Ejercicio 8: Variables Cuantitativas Discretas
+
+## Ejercicio 8.1 Número de hijos en una familia
+
+### Datos
+
+```{r}
+hijos <- c(2, 2, 4, 4, 1, 3, 1, 3, 3, 3, 5, 2, 1, 5, 3, 3, 3, 3, 1, 3, 3, 2, 5, 5, 2, 5, 2, 3, 1, 3)
+```
+
+### Procesamiento de datos (Ordenar)
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(hijos)
+```
+
+Al ser variables de tipo cuantitativa discretas se pueden ordenar.
+
+### Frecuencias (Clasificar)
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(hijos) #Datos
+hijos_ord<- sort(hijos) #Datos ordenados por clase
+(hijos_ord)
+contador <- table(hijos) #Frecuencia de los datos
+(contador)
+cte<- 9
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(hijos)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+  # Calcular mediana
+  mediana<- median(hijos)
+  cat("La mediana es:", mediana, "\n")
+
+
+```
+
+#### Media
+
+Obtenemos la media
+
+```{r}
+media<-mean(hijos)
+cat("La media es:", media, "\n")
+```
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+cuantiles <- quantile(hijos_ord); (cuantiles)
+Q1 <- cuantiles[2]; (Q1)
+Q2 <- cuantiles[3]; (Q2)
+Q3 <- cuantiles[4]; (Q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(hijos);
+(mi_min)
+mi_max <- max(hijos);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+boxplot(hijos_ord, horizontal = TRUE, col = "lightblue")
+```
+
+### Medidas de dispersión
+
+#### Varianza
+```{r}
+varianza <- var(hijos); (varianza) 
+```
+
+#### Desviación estándar
+```{r}
+DesvEst <- sd(hijos); (DesvEst)
+```
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(8,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre número de hijos en una familia en barras",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,15),
+        )
+title(xlab="Número de hijos en una familia",line=4)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-1.5,
+     labels=names(contador),
+     srt=0,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(8,4,4,2))
+tabla <- table(hijos); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de número de hijos en una familia",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,50),
+        )
+
+title(xlab="Número de hijos en una familia",line=4)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-2.5,
+     labels=names(contador),
+     srt=0,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de número de hijos en una familia",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," hijos ",porcentajes, "%"))
+```
+
+#### Gráfica de ojiva
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(8,4,4,2))
+frec_acum <- cumsum(table(factor(hijos)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de número de hijos en una familia",
+     xlab = "Número de hijos en una familia",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+```
+
+#### Gráfica de dispersión
+
+```{r}
+indices <- 1:10; (indices)
+t <- cte*indices; (t)
+mis_deciles <- hijos_ord[t]; (mis_deciles)
+plot(
+  hijos,
+  main = "Gráfica de dispersión de número de hijos en una familia",
+  xlab = "Número de familia",
+  ylab = "Número de hijos",
+  col = "blue",       
+  pch = 19,           
+  cex = 0.5,          
+  cex.main = 1.5,     
+  cex.lab = 1.2,      
+  col.main = "darkred")
+legend(
+  "topright",                  # ubicación
+  legend = c(mi_min,mi_max),    # etiquetas
+  pch = 17,
+  col=c("purple","orange"),
+  pt.cex = 1.5,                # tamaño de los símbolos
+  cex = 0.7,
+  bty = "n"                    # sin borde en la caja
+)
+abline(h = media, col = "red", lwd = 1, lty = 2)     
+abline(h = Q2, col = "lightgreen", lwd = 1, lty = 3) 
+abline(h = mis_deciles, col = "lightgray", lty = 1.5)
+points(which.min(hijos), min(hijos), col = "purple", pch = 17, cex = 1.5)
+points(which.max(hijos), max(hijos), col = "orange", pch = 17, cex = 1.5)
+```
+
+#### Gráfica combinada
+
+```{r}
+nbreaks <- 10
+h <- hist(hijos, breaks = nbreaks, plot = FALSE)
+hist(hijos,
+     breaks = nbreaks,
+     col = "lightblue",
+     main = "Histograma y Ojiva (%)",
+     xlab = "Número de hijos",
+     ylab = "Frecuencia")
+freq_acum_pct <- cumsum(h$counts) / sum(h$counts) * 100
+x_vals <- h$breaks[-1]
+par(new = TRUE)
+plot(x_vals, freq_acum_pct,
+     type = "o", pch = 19, lwd = 2, col = "red",
+     axes = FALSE, xlab = "", ylab = "",
+     xlim = range(h$breaks), ylim = c(0, 100))
+axis(4)                           # eje derecho
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+
+
+## Ejercicio 8.2 Número de estudiantes en un salón
+
+### Datos
+
+```{r}
+estudiantes<- c(35, 37, 13, 6, 40, 42, 11, 24, 24, 33, 8, 34, 21, 23, 34, 24, 45, 39, 38, 35, 9, 39, 38, 45, 7, 35, 22, 28, 38, 6, 5, 45, 36, 18, 37, 45, 13, 31, 23, 43)
+```
+
+### Procesamiento de datos (Ordenar)
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(estudiantes)
+```
+
+Al ser variables de tipo cuantitativa discretas se pueden ordenar.
+
+### Frecuencias (Clasificar)
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(estudiantes) #Datos
+estudiantes_ord<- sort(estudiantes) #Datos ordenados por clase
+(estudiantes_ord)
+contador <- table(estudiantes) #Frecuencia de los datos
+(contador)
+cte<- 9
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(estudiantes)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+  # Calcular mediana
+  mediana<- median(estudiantes)
+  cat("La mediana es:", mediana, "\n")
+
+
+```
+
+#### Media
+
+Obtenemos la media
+
+```{r}
+media<-mean(estudiantes)
+cat("La media es:", media, "\n")
+```
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+cuantiles <- quantile(estudiantes_ord); (cuantiles)
+Q1 <- cuantiles[2]; (Q1)
+Q2 <- cuantiles[3]; (Q2)
+Q3 <- cuantiles[4]; (Q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(estudiantes);
+(mi_min)
+mi_max <- max(estudiantes);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+boxplot(estudiantes_ord, horizontal = TRUE, col = "lightblue")
+```
+
+### Medidas de dispersión
+
+#### Varianza
+```{r}
+varianza <- var(estudiantes); (varianza) 
+```
+
+#### Desviación estándar
+```{r}
+DesvEst <- sd(estudiantes); (DesvEst)
+```
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(8,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre número de estudiantes en un salón",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,5),
+        space = 1,
+        width = 3,
+        )
+title(xlab="Número de estudiantes en un salón",line=4)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.5,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1,
+     space=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=0.8,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(8,4,4,2))
+tabla <- table(estudiantes); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de número de estudiantes en un salón",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,15),
+    space=1,
+    width = 3,
+        )
+
+title(xlab="Número de estudiantes en un salón",line=4)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-0.5,
+     labels=names(contador),
+     srt=90,
+     adj=1,
+     xpd=TRUE,
+     cex=1,
+     space=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=0.8,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+par(pin = c(7, 5))
+pie(tabla,
+    main = "Distribución de número de estudiantes en un salón",
+    col = rainbow(length(tabla), 0.7),
+    labels = NA,
+    cex.main = 1.5)
+
+#Cuadro de acotaciones a la derecha
+
+legend(x = 0.85, y = 0.8,
+       legend = paste(names(tabla), "estudiantes (", porcentajes, "%)"),
+       fill = rainbow(length(tabla), 0.6),
+       cex = 0.7,
+       title = "Número de estudiantes")
+```
+
+#### Gráfica de ojiva
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(8,4,4,2))
+frec_acum <- cumsum(table(factor(estudiantes)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de número de estudiantes en un salón",
+     xlab = "Número de estudiantes en un salón",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+```
+
+#### Gráfica de dispersión
+
+```{r}
+indices <- 1:10; (indices)
+t <- cte*indices; (t)
+mis_deciles <- estudiantes_ord[t]; (mis_deciles)
+plot(estudiantes,
+  main = "Gráfica de dispersión de número de estudiantes",
+  xlab = "Número de salón",
+  ylab = "Número de estudiantes en un salón",
+  col = "blue",       
+  pch = 19,           
+  cex = 0.5,          
+  cex.main = 1.5,     
+  cex.lab = 1.2,      
+  col.main = "darkred")
+legend(
+  "topright",                  # ubicación
+  legend = c(mi_min,mi_max),    # etiquetas
+  pch = 17,
+  col=c("purple","orange"),
+  pt.cex = 1.5,                # tamaño de los símbolos
+  cex = 0.7,
+  bty = "n"                    # sin borde en la caja
+)
+abline(h = media, col = "red", lwd = 1, lty = 2)     
+abline(h = Q2, col = "lightgreen", lwd = 1, lty = 3) 
+abline(h = mis_deciles, col = "lightgray", lty = 1.5)
+points(which.min(estudiantes), min(estudiantes), col = "purple", pch = 17, cex = 1.5)
+points(which.max(estudiantes), max(estudiantes), col = "orange", pch = 17, cex = 1.5)
+```
+
+#### Gráfica combinada
+
+```{r}
+nbreaks <- 10
+h <- hist(estudiantes, breaks = nbreaks, plot = FALSE)
+hist(estudiantes,
+     breaks = nbreaks,
+     col = "lightblue",
+     main = "Histograma y Ojiva (%)",
+     xlab = "Número de estudiantes en un salón",
+     ylab = "Frecuencia")
+freq_acum_pct <- cumsum(h$counts) / sum(h$counts) * 100
+x_vals <- h$breaks[-1]
+par(new = TRUE)
+plot(x_vals, freq_acum_pct,
+     type = "o", pch = 19, lwd = 2, col = "red",
+     axes = FALSE, xlab = "", ylab = "",
+     xlim = range(h$breaks), ylim = c(0, 100))
+axis(4)                           # eje derecho
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+
+
+## Ejercicio 8.3 Número de autos por familia
+
+### Datos
+
+```{r}
+autos <- c(2, 1, 0, 0, 1, 1, 0, 0, 3, 3, 1, 0, 1, 1, 1, 0, 1, 1, 3, 2, 1, 2, 1, 0, 1, 1, 2, 1, 2, 1, 1, 2, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 2, 0, 0, 1, 0, 1, 2, 2, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 2, 2, 1, 2, 1, 0, 0, 0, 0, 0, 3, 3, 1)
+```
+
+### Procesamiento de datos (Ordenar)
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(autos)
+```
+
+Al ser variables de tipo cuantitativa discretas se pueden ordenar.
+
+### Frecuencias (Clasificar)
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(autos) #Datos
+autos_ord<- sort(autos) #Datos ordenados por clase
+(autos_ord)
+contador <- table(autos) #Frecuencia de los datos
+(contador)
+cte<- 9
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(autos)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+  # Calcular mediana
+  mediana<- median(autos)
+  cat("La mediana es:", mediana, "\n")
+
+
+```
+
+#### Media
+
+Obtenemos la media
+
+```{r}
+media<-mean(autos)
+cat("La media es:", media, "\n")
+```
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+cuantiles <- quantile(autos_ord); (cuantiles)
+Q1 <- cuantiles[2]; (Q1)
+Q2 <- cuantiles[3]; (Q2)
+Q3 <- cuantiles[4]; (Q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(autos);
+(mi_min)
+mi_max <- max(autos);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+boxplot(autos_ord, horizontal = TRUE, col = "lightblue")
+```
+
+### Medidas de dispersión
+
+#### Varianza
+```{r}
+varianza <- var(autos); (varianza) 
+```
+
+#### Desviación estándar
+```{r}
+DesvEst <- sd(autos); (DesvEst)
+```
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(8,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre número de autos por familia en barras",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,40),
+        )
+title(xlab="Número de autos por familia",line=4)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-1.5,
+     labels=names(contador),
+     srt=0,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(8,4,4,2))
+tabla <- table(autos); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de número de autos por familia",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,50),
+        )
+
+title(xlab="Número de autos por familia",line=4)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-2.5,
+     labels=names(contador),
+     srt=0,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de número de autos por familia",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," autos ",porcentajes, "%"))
+```
+
+#### Gráfica de ojiva
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(8,4,4,2))
+frec_acum <- cumsum(table(factor(autos)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de número de autos por familia",
+     xlab = "Número de autos por familia",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+```
+
+#### Gráfica de dispersión
+
+```{r}
+indices <- 1:10; (indices)
+t <- cte*indices; (t)
+mis_deciles <- autos_ord[t]; (mis_deciles)
+plot(autos,
+  main = "Gráfica de dispersión de número de autos por familia",
+  xlab = "Número de familia",
+  ylab = "Número de autos",
+  col = "blue",       
+  pch = 19,           
+  cex = 0.5,          
+  cex.main = 1.5,     
+  cex.lab = 1.2,      
+  col.main = "darkred")
+legend(
+  "topright",                  # ubicación
+  legend = c(mi_min,mi_max),    # etiquetas
+  pch = 17,
+  col=c("purple","orange"),
+  pt.cex = 1.5,                # tamaño de los símbolos
+  cex = 0.7,
+  bty = "n"                    # sin borde en la caja
+)
+abline(h = media, col = "red", lwd = 1, lty = 2)     
+abline(h = Q2, col = "lightgreen", lwd = 1, lty = 3) 
+abline(h = mis_deciles, col = "lightgray", lty = 1.5)
+points(which.min(autos), min(autos), col = "purple", pch = 17, cex = 1.5)
+points(which.max(autos), max(autos), col = "orange", pch = 17, cex = 1.5)
+```
+
+#### Gráfica combinada
+
+```{r}
+nbreaks <- 10
+h <- hist(autos, breaks = nbreaks, plot = FALSE)
+hist(autos,
+     breaks = nbreaks,
+     col = "lightblue",
+     main = "Histograma y Ojiva (%)",
+     xlab = "Número de autos",
+     ylab = "Frecuencia")
+freq_acum_pct <- cumsum(h$counts) / sum(h$counts) * 100
+x_vals <- h$breaks[-1]
+par(new = TRUE)
+plot(x_vals, freq_acum_pct,
+     type = "o", pch = 19, lwd = 2, col = "red",
+     axes = FALSE, xlab = "", ylab = "",
+     xlim = range(h$breaks), ylim = c(0, 100))
+axis(4)                           # eje derecho
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+
+## Ejercicio 8.4 Goles en un partido
+
+### Datos
+
+```{r}
+goles <- c(0, 1, 1, 0, 0, 1, 2, 0, 4, 0, 0, 0, 3, 0, 2, 3, 1, 1, 0, 1, 3, 0, 0,
+4, 0, 1, 0, 4, 3, 3, 1, 2, 0, 0, 4, 4, 1, 2, 0, 0, 1, 0, 0, 4, 1, 3, 1, 0, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 3, 4, 3, 1, 1, 0, 0, 3, 0, 1, 1, 0, 1, 0, 1, 1, 0, 3, 0, 1, 3, 0, 0, 3, 1, 3, 1, 3, 0, 1, 2, 0, 1, 1, 3, 0, 1, 0, 0, 1, 1, 2)
+```
+
+### Procesamiento de datos (Ordenar)
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(goles)
+```
+
+Al ser variables de tipo cuantitativa discretas se pueden ordenar.
+
+### Frecuencias (Clasificar)
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(autos) #Datos
+goles_ord<- sort(goles) #Datos ordenados por clase
+(goles_ord)
+contador <- table(goles) #Frecuencia de los datos
+(contador)
+cte<- 9
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(goles)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+  # Calcular mediana
+  mediana<- median(goles)
+  cat("La mediana es:", mediana, "\n")
+
+
+```
+
+#### Media
+
+Obtenemos la media
+
+```{r}
+media<-mean(goles)
+cat("La media es:", media, "\n")
+```
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+cuantiles <- quantile(goles_ord); (cuantiles)
+Q1 <- cuantiles[2]; (Q1)
+Q2 <- cuantiles[3]; (Q2)
+Q3 <- cuantiles[4]; (Q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(goles);
+(mi_min)
+mi_max <- max(goles);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+boxplot(goles_ord, horizontal = TRUE, col = "lightblue")
+```
+
+### Medidas de dispersión
+
+#### Varianza
+```{r}
+varianza <- var(goles); (varianza) 
+```
+
+#### Desviación estándar
+```{r}
+DesvEst <- sd(goles); (DesvEst)
+```
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica con el comando *barplot*
+
+Generemos la gráfica de barras.
+
+```{r}
+par(mar=c(8,4,4,2))
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre goles en un partido",
+        xlab="",
+        names.arg="",
+        ylab="Frecuencias",
+        ylim=c(0,50),
+        )
+title(xlab="Goles en un partido",line=4)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-1.5,
+     labels=names(contador),
+     srt=0,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(8,4,4,2))
+tabla <- table(goles); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de goles en un partido",
+    xlab = "",
+    names.arg="",
+    ylab="Porcentaje (%)",
+    ylim=c(0,50),
+        )
+
+title(xlab="Goles en un partido",line=4)
+
+#Etiquetas rotadas
+text(x=gb,
+     y=par("usr")[3]-2.5,
+     labels=names(contador),
+     srt=0,
+     adj=1,
+     xpd=TRUE,
+     cex=1)
+
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de goles en un partido",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," goles ",porcentajes, "%"))
+```
+
+#### Gráfica de ojiva
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(8,4,4,2))
+frec_acum <- cumsum(table(factor(goles)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de goles en un partido",
+     xlab = "Goles en un partido",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+```
+
+#### Gráfica de dispersión
+
+```{r}
+indices <- 1:10; (indices)
+t <- cte*indices; (t)
+mis_deciles <- goles_ord[t]; (mis_deciles)
+plot(
+  goles,
+  main = "Gráfica de dispersión de goles en un partido",
+  xlab = "Número de partidos",
+  ylab = "Goles en un partido",
+  col = "blue",       
+  pch = 19,           
+  cex = 0.5,          
+  cex.main = 1.5,     
+  cex.lab = 1.2,      
+  col.main = "darkred")
+legend(
+  "topright",                  # ubicación
+  legend = c(mi_min,mi_max),    # etiquetas
+  pch = 17,
+  col=c("purple","orange"),
+  pt.cex = 1.5,                # tamaño de los símbolos
+  cex = 0.7,
+  bty = "n"                    # sin borde en la caja
+)
+abline(h = media, col = "red", lwd = 1, lty = 2)     
+abline(h = Q2, col = "lightgreen", lwd = 1, lty = 3) 
+abline(h = mis_deciles, col = "lightgray", lty = 1.5)
+points(which.min(goles), min(goles), col = "purple", pch = 17, cex = 1.5)
+points(which.max(goles), max(goles), col = "orange", pch = 17, cex = 1.5)
+```
+
+#### Gráfica combinada
+
+```{r}
+nbreaks <- 10
+h <- hist(goles, breaks = nbreaks, plot = FALSE)
+hist(goles,
+     breaks = nbreaks,
+     col = "lightblue",
+     main = "Histograma y Ojiva (%)",
+     xlab = "Goles en un partido",
+     ylab = "Frecuencia")
+freq_acum_pct <- cumsum(h$counts) / sum(h$counts) * 100
+x_vals <- h$breaks[-1]
+par(new = TRUE)
+plot(x_vals, freq_acum_pct,
+     type = "o", pch = 19, lwd = 2, col = "red",
+     axes = FALSE, xlab = "", ylab = "",
+     xlim = range(h$breaks), ylim = c(0, 100))
+axis(4)                           # eje derecho
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+
+## Ejercicio 8.5 Accidentes en una vialidad
+
+### Datos
+
+```{r}
+accidentes<- c(22, 24, 35, 8, 12, 33, 17, 31, 24, 12, 6, 14, 26, 8, 41, 3, 15, 7, 3, 23, 10, 17, 3, 7, 1, 11, 19, 4, 33, 7, 10, 2, 2, 19, 1, 15, 7, 16, 13, 3, 26, 4, 16, 18, 27, 18, 17, 32, 25, 22, 34, 40, 47, 35, 19, 27, 12, 44, 37, 27, 40, 18, 28, 16, 31, 37, 32, 44, 29, 35, 25, 28, 27, 31, 33, 21, 41, 20, 39, 28, 22, 34, 27, 28, 37, 26, 29, 37, 38, 26, 38, 53, 39, 41, 35, 57, 27, 41, 41, 72, 53, 64, 67, 46, 44, 31, 47, 56, 56, 63, 47, 58, 44, 32, 70, 53, 59, 51, 70, 44, 51, 52, 46, 44, 46, 41, 54, 63, 46, 47, 37, 60, 34, 49, 63, 42, 48, 44, 65, 63, 45, 63, 42, 58, 43, 54, 90, 55, 57, 54, 55, 46, 46, 46, 55, 23, 39, 35, 44, 58, 68, 44, 11, 23, 24, 13, 47, 49)
+```
+
+### Procesamiento de datos (Ordenar)
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(accidentes)
+```
+
+Al ser variables de tipo cuantitativa discretas se pueden ordenar.
+
+### Frecuencias (Clasificar)
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(accidentes) #Datos
+accidentes_ord<- sort(accidentes) #Datos ordenados por clase
+(accidentes_ord)
+contador <- table(accidentes) #Frecuencia de los datos
+(contador)
+cte<- 9
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(accidentes)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+  # Calcular mediana
+  mediana<- median(accidentes)
+  cat("La mediana es:", mediana, "\n")
+
+
+```
+
+#### Media
+
+Obtenemos la media
+
+```{r}
+media<-mean(accidentes)
+cat("La media es:", media, "\n")
+```
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+cuantiles <- quantile(accidentes_ord); (cuantiles)
+Q1 <- cuantiles[2]; (Q1)
+Q2 <- cuantiles[3]; (Q2)
+Q3 <- cuantiles[4]; (Q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(accidentes);
+(mi_min)
+mi_max <- max(accidentes);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+boxplot(accidentes_ord, horizontal = TRUE, col = "lightblue")
+```
+
+### Medidas de dispersión
+
+#### Varianza
+```{r}
+varianza <- var(accidentes); (varianza) 
+```
+
+#### Desviación estándar
+```{r}
+DesvEst <- sd(accidentes); (DesvEst)
+```
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Generemos la gráfica de barras.
+
+```{r}
+# Regla de Sturges lo que nos da el número de intervalos
+n <- length(accidentes)
+nbreaks <- round(1 + 3.322 * log10(n))
+(nbreaks)
+rango <- range(accidentes)
+breaks_exactos <- seq(from = rango[1], to = rango[2], length.out = nbreaks + 1)
+
+par(mar=c(8,4,4,2))
+miscolores <- rainbow(12,0.25)
+gb <- hist(accidentes, breaks = breaks_exactos, plot = FALSE) #histograma simple de los datos
+gb2 <- hist(accidentes, breaks = breaks_exactos, col = miscolores, 
+          main = "Accidentes en una vialidad",
+          xlab = "Número de accidentes",
+          ylab = "Frecuencias",
+          ylim = c(0, max(gb$counts)*1.5))
+
+text(gb2$mids, gb2$counts, labels = gb2$counts, pos = 3, cex = 0.8, 
+     col = "black")
+
+nl <- length(gb2$counts)
+legend(
+  "topright",
+  legend = gb2$counts,
+  fill = miscolores[1:nl],  # Solo los colores necesarios
+  pt.cex = 1.5,
+  cex = 0.5,
+  bty = "n"
+)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(10,4,4,2))
+
+intervalos <- cut(accidentes, breaks = breaks_exactos, include.lowest = TRUE)
+tabla_intervalos <- table(intervalos)
+porcentajes_intervalos <- round(prop.table(tabla_intervalos) * 100, 1)
+gp <- barplot(porcentajes_intervalos, 
+                 col = rainbow(length(tabla_intervalos), 0.4),
+                 main = "Porcentajes de accidentes en una vialidad",
+                 xlab = "",
+                 ylab = "Porcentaje (%)",
+                 ylim = c(0, max(porcentajes_intervalos) + 5),
+                 las = 2)  # Etiquetas verticales
+
+title(xlab = "Accidentes en una vialidad", line = 8)
+
+# Agregar valores encima de barras
+text(x = gp,
+     y = porcentajes_intervalos,
+     labels = paste0(porcentajes_intervalos, "%"),
+     pos = 3,
+     cex = 0.8,
+     font = 2)
+
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+par(pin = c(7, 5))
+pie(tabla_intervalos,
+    main = "Distribución de accidentes en una vialidad",
+    col = rainbow(length(tabla_intervalos), 0.7),
+    labels = NA,
+    cex.main = 1.5)
+
+legend(x =0.78, y = 0.8,
+       legend = paste(names(tabla_intervalos), "(", porcentajes, "%)"),
+       fill = rainbow(length(tabla_intervalos), 0.7),
+       cex = 0.7,
+       title = "Intervalos de accidentes",
+       title.cex = 0.9)
+```
+
+#### Gráfica de ojiva
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(8,4,4,2))
+frec_acum <- cumsum(table(factor(accidentes)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de accidentes en una vialidad",
+     xlab = "Accidentes en una vialidad",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+```
+
+#### Gráfica de dispersión
+
+```{r}
+indices <- 1:10; (indices)
+t <- cte*indices; (t)
+mis_deciles <- tabla_intervalos[t]; (mis_deciles)
+plot(
+  accidentes,
+  main = "Gráfica de dispersión de accidentes en una vialidad",
+  xlab = "Número de la vialidad en accidentes",
+  ylab = "Número de accidentes",
+  col = "blue",       
+  pch = 19,           
+  cex = 0.5,          
+  cex.main = 1.5,     
+  cex.lab = 1.2,      
+  col.main = "darkred")
+legend(
+  "topright",                  # ubicación
+  legend = c(mi_min,mi_max),    # etiquetas
+  pch = 17,
+  col=c("purple","orange"),
+  pt.cex = 1.5,                # tamaño de los símbolos
+  cex = 0.7,
+  bty = "n"                    # sin borde en la caja
+)
+abline(h = media, col = "red", lwd = 1, lty = 2)     
+abline(h = Q2, col = "lightgreen", lwd = 1, lty = 3) 
+abline(h = mis_deciles, col = "lightgray", lty = 1.5)
+points(which.min(accidentes), min(accidentes), col = "purple", pch = 17, cex = 1.5)
+points(which.max(accidentes), max(accidentes), col = "orange", pch = 17, cex = 1.5)
+```
+
+#### Gráfica combinada
+
+```{r}
+nbreaks <- 10
+h <- hist(accidentes, breaks = breaks_exactos, plot = FALSE)
+hist(accidentes,
+     breaks = breaks_exactos,
+     col = "lightblue",
+     main = "Histograma y Ojiva (%)",
+     xlab = "Accidentes en una vialidad",
+     ylab = "Frecuencia")
+freq_acum_pct <- cumsum(h$counts) / sum(h$counts) * 100
+x_vals <- h$breaks[-1]
+par(new = TRUE)
+plot(x_vals, freq_acum_pct,
+     type = "o", pch = 19, lwd = 2, col = "red",
+     axes = FALSE, xlab = "", ylab = "",
+     xlim = range(h$breaks), ylim = c(0, 100))
+axis(4)                           # eje derecho
+#---- Fin ----
+```
+
+
+
+
+
+
+
+# Ejercicio 9: Variables Cuantitativas Continuas
+
+## Ejercicio 9.1 Estatura en metros
+
+### Datos
+
+```{r}
+estatura<- c(1.57, 1.97, 1.85, 1.78, 1.62, 1.67, 1.92, 1.96, 1.76, 1.94, 1.85, 1.71, 1.65, 1.98, 1.56, 1.84, 1.91, 1.61, 1.8, 1.58, 1.7, 1.62, 1.76, 1.84, 1.95, 1.67, 1.62, 1.65, 1.61, 1.56, 1.63, 1.96, 1.53, 1.75, 1.9, 1.92, 1.79, 1.62, 1.79, 1.57, 1.74, 1.55, 1.65, 1.84, 1.6, 1.7, 1.9, 1.61, 1.54, 1.89, 1.84, 1.76, 1.61, 1.59, 1.81, 1.52, 1.61, 1.91, 1.65, 1.51, 1.98, 1.54, 1.87, 1.92, 1.51, 1.93, 1.78, 1.67, 1.66, 1.82, 1.56, 1.66, 1.79, 1.88, 1.78, 1.84, 1.69, 1.95, 1.99, 1.88, 1.51, 1.76, 1.9, 1.6, 1.69, 1.77, 1.87, 1.67, 1.66, 1.71, 1.64, 1.81, 1.52, 1.8, 1.71, 1.52, 2, 1.81, 1.92, 1.7)
+```
+
+### Procesamiento de datos (Ordenar)
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(estatura)
+```
+
+Al ser variables de tipo cuantitativa discretas se pueden ordenar.
+
+### Frecuencias (Clasificar)
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(estatura) #Datos
+estatura_ord<- sort(estatura) #Datos ordenados por clase
+(estatura_ord)
+contador <- table(estatura) #Frecuencia de los datos
+(contador)
+cte<- 9
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(estatura)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+  # Calcular mediana
+  mediana<- median(estatura)
+  cat("La mediana es:", mediana, "\n")
+
+
+```
+
+#### Media
+
+Obtenemos la media
+
+```{r}
+media<-mean(estatura)
+cat("La media es:", media, "\n")
+```
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+cuantiles <- quantile(estatura_ord); (cuantiles)
+Q1 <- cuantiles[2]; (Q1)
+Q2 <- cuantiles[3]; (Q2)
+Q3 <- cuantiles[4]; (Q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(estatura);
+(mi_min)
+mi_max <- max(estatura);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+boxplot(estatura_ord, horizontal = TRUE, col = "lightblue")
+```
+
+### Medidas de dispersión
+
+#### Varianza
+```{r}
+varianza <- var(estatura); (varianza) 
+```
+
+#### Desviación estándar
+```{r}
+DesvEst <- sd(estatura); (DesvEst)
+```
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Generemos la gráfica de barras.
+
+```{r}
+# Regla de Sturges lo que nos da el número de intervalos
+n <- length(estatura)
+nbreaks <- round(1 + 3.322 * log10(n))
+(nbreaks)
+rango <- range(estatura)
+breaks_exactos <- seq(from = rango[1], to = rango[2], length.out = nbreaks + 1)
+
+par(mar=c(8,4,4,2))
+miscolores <- rainbow(12,0.25)
+gb <- hist(estatura, breaks = breaks_exactos, plot = FALSE) #histograma simple de los datos
+gb2 <- hist(estatura, breaks = breaks_exactos, col = miscolores, 
+          main = "Estatura en metros",
+          xlab = "Estatura en metros",
+          ylab = "Frecuencias",
+          ylim = c(0, max(gb$counts)*1.5))
+
+text(gb2$mids, gb2$counts, labels = gb2$counts, pos = 3, cex = 0.8, 
+     col = "black")
+
+nl <- length(gb2$counts)
+legend(
+  "topright",
+  legend = gb2$counts,
+  fill = miscolores[1:nl],  # Solo los colores necesarios
+  pt.cex = 1.5,
+  cex = 0.5,
+  bty = "n"
+)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(10,4,4,2))
+
+intervalos <- cut(estatura, breaks = breaks_exactos, include.lowest = TRUE)
+tabla_intervalos <- table(intervalos)
+porcentajes_intervalos <- round(prop.table(tabla_intervalos) * 100, 1)
+gp <- barplot(porcentajes_intervalos, 
+                 col = rainbow(length(tabla_intervalos), 0.4),
+                 main = "Porcentajes de estatura en metros",
+                 xlab = "",
+                 ylab = "Porcentaje (%)",
+                 ylim = c(0, max(porcentajes_intervalos) + 5),
+                 las = 2)  # Etiquetas verticales
+
+title(xlab = "Estatura en metros", line = 8)
+
+# Agregar valores encima de barras
+text(x = gp,
+     y = porcentajes_intervalos,
+     labels = paste0(porcentajes_intervalos, "%"),
+     pos = 3,
+     cex = 0.8,
+     font = 2)
+
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+par(pin = c(7, 5))
+pie(tabla_intervalos,
+    main = "Distribución de estatura en metros",
+    col = rainbow(length(tabla_intervalos), 0.7),
+    labels = NA,
+    cex.main = 1.5)
+
+legend(x =0.78, y = 0.8,
+       legend = paste(names(tabla_intervalos), "(", porcentajes_intervalos, "%)"),
+       fill = rainbow(length(tabla_intervalos), 0.7),
+       cex = 0.7,
+       title = "Intervalos de estaturas",
+       title.cex = 0.9)
+```
+
+#### Gráfica de ojiva
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(8,4,4,2))
+frec_acum <- cumsum(table(factor(estatura)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de estatura en metros",
+     xlab = "Estatura en metros",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+```
+
+#### Gráfica de dispersión
+
+```{r}
+indices <- 1:10; (indices)
+t <- cte*indices; (t)
+mis_deciles <- tabla_intervalos[t]; (mis_deciles)
+plot(
+  estatura,
+  main = "Gráfica de dispersión de estatura en metros",
+  xlab = "Datos en el intervalo",
+  ylab = "Intervalo de estaturas",
+  col = "blue",       
+  pch = 19,           
+  cex = 0.5,          
+  cex.main = 1.5,     
+  cex.lab = 1.2,      
+  col.main = "darkred")
+legend(
+  "topright",                  # ubicación
+  legend = c(mi_min,mi_max),    # etiquetas
+  pch = 17,
+  col=c("purple","orange"),
+  pt.cex = 1.5,                # tamaño de los símbolos
+  cex = 0.7,
+  bty = "n"                    # sin borde en la caja
+)
+abline(h = media, col = "red", lwd = 1, lty = 2)     
+abline(h = Q2, col = "lightgreen", lwd = 1, lty = 3) 
+abline(h = mis_deciles, col = "lightgray", lty = 1.5)
+points(which.min(estatura), min(estatura), col = "purple", pch = 17, cex = 1.5)
+points(which.max(estatura), max(estatura), col = "orange", pch = 17, cex = 1.5)
+```
+
+#### Gráfica combinada
+
+```{r}
+nbreaks <- 10
+h <- hist(estatura, breaks = breaks_exactos, plot = FALSE)
+hist(estatura,
+     breaks = breaks_exactos,
+     col = "lightblue",
+     main = "Histograma y Ojiva (%)",
+     xlab = "Estatura en metros",
+     ylab = "Frecuencia")
+freq_acum_pct <- cumsum(h$counts) / sum(h$counts) * 100
+x_vals <- h$breaks[-1]
+par(new = TRUE)
+plot(x_vals, freq_acum_pct,
+     type = "o", pch = 19, lwd = 2, col = "red",
+     axes = FALSE, xlab = "", ylab = "",
+     xlim = range(h$breaks), ylim = c(0, 100))
+axis(4)                           # eje derecho
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+
+
+## Ejercicio 9.2 Peso corporal en kilogramos:
+
+### Datos
+
+```{r}
+peso<- c(100.5, 91.3, 60.4, 83.2, 49.6, 103.1, 60.3, 109.3, 83.5, 63.9, 106, 50, 47, 89.7, 108.5, 78.9, 82.7, 60.7, 98.7, 85.2, 48.7, 106.7, 63.9, 84.1, 69.5, 53.3, 108.9, 91.8, 108.6, 54.5, 95.1, 90.6, 115.9, 88.5, 67.7, 115.1, 108.3, 76.8, 81.4, 102.6, 63.9, 105.9, 106.7, 76.3, 113.7, 50.3, 105.8, 81.4, 67.9, 91.3, 68.9, 93.9, 113.7, 87.7, 92.8, 76.2, 104.7, 109.7, 72.6, 81.6, 112.2, 79.8, 60.7, 95.7, 100.1, 94, 60.5, 117.1, 45.5, 112.7, 51.7, 107.8, 86.6, 90.3, 105.9, 64.7, 48, 55.4, 52.9, 58.2, 117.1, 59.6, 69.9, 96.9, 97, 66.5, 67.4, 77.2, 73.7, 113)
+```
+
+### Procesamiento de datos (Ordenar)
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(peso)
+```
+
+Al ser variables de tipo cuantitativa discretas se pueden ordenar.
+
+### Frecuencias (Clasificar)
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(peso) #Datos
+peso_ord<- sort(peso) #Datos ordenados por clase
+(peso_ord)
+contador <- table(peso) #Frecuencia de los datos
+(contador)
+cte<- 9
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(peso)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+  # Calcular mediana
+  mediana<- median(peso)
+  cat("La mediana es:", mediana, "\n")
+
+
+```
+
+#### Media
+
+Obtenemos la media
+
+```{r}
+media<-mean(peso)
+cat("La media es:", media, "\n")
+```
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+cuantiles <- quantile(peso_ord); (cuantiles)
+Q1 <- cuantiles[2]; (Q1)
+Q2 <- cuantiles[3]; (Q2)
+Q3 <- cuantiles[4]; (Q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(peso);
+(mi_min)
+mi_max <- max(peso);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+boxplot(peso_ord, horizontal = TRUE, col = "lightblue")
+```
+
+### Medidas de dispersión
+
+#### Varianza
+```{r}
+varianza <- var(peso); (varianza) 
+```
+
+#### Desviación estándar
+```{r}
+DesvEst <- sd(peso); (DesvEst)
+```
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Generemos la gráfica de barras.
+
+```{r}
+# Regla de Sturges lo que nos da el número de intervalos
+n <- length(peso)
+nbreaks <- round(1 + 3.322 * log10(n))
+(nbreaks)
+rango <- range(peso)
+breaks_exactos <- seq(from = rango[1], to = rango[2], length.out = nbreaks + 1)
+
+par(mar=c(8,4,4,2))
+miscolores <- rainbow(12,0.25)
+gb <- hist(peso, breaks = breaks_exactos, plot = FALSE) #histograma simple de los datos
+gb2 <- hist(peso, breaks = breaks_exactos, col = miscolores, 
+          main = "Peso corporal en kilogramos",
+          xlab = "Peso corporal en kilogramos",
+          ylab = "Frecuencias",
+          ylim = c(0, max(gb$counts)*1.5))
+
+text(gb2$mids, gb2$counts, labels = gb2$counts, pos = 3, cex = 0.8, 
+     col = "black")
+
+nl <- length(gb2$counts)
+legend(
+  "topright",
+  legend = gb2$counts,
+  fill = miscolores[1:nl],  # Solo los colores necesarios
+  pt.cex = 1.5,
+  cex = 0.5,
+  bty = "n"
+)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(10,4,4,2))
+
+intervalos <- cut(peso, breaks = breaks_exactos, include.lowest = TRUE)
+tabla_intervalos <- table(intervalos)
+porcentajes_intervalos <- round(prop.table(tabla_intervalos) * 100, 1)
+gp <- barplot(porcentajes_intervalos, 
+                 col = rainbow(length(tabla_intervalos), 0.4),
+                 main = "Porcentajes de peso corporal en kilogramos",
+                 xlab = "",
+                 ylab = "Porcentaje (%)",
+                 ylim = c(0, max(porcentajes_intervalos) + 5),
+                 las = 2)  # Etiquetas verticales
+
+title(xlab = "Peso corporal en kilogramos", line = 8)
+
+# Agregar valores encima de barras
+text(x = gp,
+     y = porcentajes_intervalos,
+     labels = paste0(porcentajes_intervalos, "%"),
+     pos = 3,
+     cex = 0.8,
+     font = 2)
+
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+par(pin = c(7, 5))
+pie(tabla_intervalos,
+    main = "Distribución de peso corporal en kilogramos",
+    col = rainbow(length(tabla_intervalos), 0.7),
+    labels = NA,
+    cex.main = 1.5)
+
+legend(x =0.78, y = 0.8,
+       legend = paste(names(tabla_intervalos), "(", porcentajes_intervalos, "%)"),
+       fill = rainbow(length(tabla_intervalos), 0.7),
+       cex = 0.7,
+       title = "Intervalos de pesos",
+       title.cex = 0.9)
+```
+
+#### Gráfica de ojiva
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(8,4,4,2))
+frec_acum <- cumsum(table(factor(peso)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de peso corporal en kilogramos",
+     xlab = "Peso en kilogramos",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+```
+
+#### Gráfica de dispersión
+
+```{r}
+indices <- 1:10; (indices)
+t <- cte*indices; (t)
+mis_deciles <- tabla_intervalos[t]; (mis_deciles)
+plot(peso,
+  main = "Gráfica de dispersión de peso corporal en kilogramos",
+  xlab = "Datos en el intervalo",
+  ylab = "Intervalo de pesos",
+  col = "blue",       
+  pch = 19,           
+  cex = 0.5,          
+  cex.main = 1.5,     
+  cex.lab = 1.2,      
+  col.main = "darkred")
+legend(
+  "topright",                  # ubicación
+  legend = c(mi_min,mi_max),    # etiquetas
+  pch = 17,
+  col=c("purple","orange"),
+  pt.cex = 1.5,                # tamaño de los símbolos
+  cex = 0.7,
+  bty = "n"                    # sin borde en la caja
+)
+abline(h = media, col = "red", lwd = 1, lty = 2)     
+abline(h = Q2, col = "lightgreen", lwd = 1, lty = 3) 
+abline(h = mis_deciles, col = "lightgray", lty = 1.5)
+points(which.min(peso), min(peso), col = "purple", pch = 17, cex = 1.5)
+points(which.max(peso), max(peso), col = "orange", pch = 17, cex = 1.5)
+```
+
+#### Gráfica combinada
+
+```{r}
+nbreaks <- 10
+h <- hist(peso, breaks = breaks_exactos, plot = FALSE)
+hist(peso,
+     breaks = breaks_exactos,
+     col = "lightblue",
+     main = "Histograma y Ojiva (%)",
+     xlab = "Peso corporal en kilogramos",
+     ylab = "Frecuencia")
+freq_acum_pct <- cumsum(h$counts) / sum(h$counts) * 100
+x_vals <- h$breaks[-1]
+par(new = TRUE)
+plot(x_vals, freq_acum_pct,
+     type = "o", pch = 19, lwd = 2, col = "red",
+     axes = FALSE, xlab = "", ylab = "",
+     xlim = range(h$breaks), ylim = c(0, 100))
+axis(4)                           # eje derecho
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+
+
+## Ejercicio 9.3 Nivel de contaminación en la delegación Iztapalapa en el mes de julio:
+
+### Datos
+
+```{r}
+contaminacion<- c(0.7, 0.4, 0.4, 0.5, 0.3, 0.3, 0.7, 0.5, 0.2, 0.2, 0.5, 0.8, 0.3, 0.9, 0.5, 0.2, 0.4, 0.4, 0.7, 0.6, 0.8, 0.3, 1, 0.7, 1.5, 0.1, 0.1, 0.9, 0.1, 0.3, 0.9, 0.3, 1.2, 1.2, 1.2, 0.6, 0.7, 0.4, 1.8, 0.2, 0.6, 0.7, 1.7, 0.4, 0.9, 0.2, 0.8, 1, 0.7, 0.6, 0.7, 0.3, 0.5, 0.2, 1.2, 0.5, 0.8, 0.2, 0.4, 0.3, 0.4, 0.5, 0.5, 1.4, 0.4)
+```
+
+### Procesamiento de datos (Ordenar)
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(contaminacion)
+```
+
+Al ser variables de tipo cuantitativa discretas se pueden ordenar.
+
+### Frecuencias (Clasificar)
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(contaminacion) #Datos
+contaminacion_ord<- sort(contaminacion) #Datos ordenados por clase
+(contaminacion_ord)
+contador <- table(contaminacion) #Frecuencia de los datos
+(contador)
+cte<- 9
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(contaminacion)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+  # Calcular mediana
+  mediana<- median(contaminacion)
+  cat("La mediana es:", mediana, "\n")
+
+
+```
+
+#### Media
+
+Obtenemos la media
+
+```{r}
+media<-mean(contaminacion)
+cat("La media es:", media, "\n")
+```
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+cuantiles <- quantile(contaminacion_ord); (cuantiles)
+Q1 <- cuantiles[2]; (Q1)
+Q2 <- cuantiles[3]; (Q2)
+Q3 <- cuantiles[4]; (Q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(contaminacion);
+(mi_min)
+mi_max <- max(contaminacion);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+boxplot(contaminacion_ord, horizontal = TRUE, col = "lightblue")
+```
+
+### Medidas de dispersión
+
+#### Varianza
+```{r}
+varianza <- var(contaminacion); (varianza) 
+```
+
+#### Desviación estándar
+```{r}
+DesvEst <- sd(contaminacion); (DesvEst)
+```
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Generemos la gráfica de barras.
+
+```{r}
+# Regla de Sturges lo que nos da el número de intervalos
+n <- length(contaminacion)
+nbreaks <- round(1 + 3.322 * log10(n))
+(nbreaks)
+rango <- range(contaminacion)
+breaks_exactos <- seq(from = rango[1], to = rango[2], length.out = nbreaks + 1)
+
+par(mar=c(8,4,4,2))
+miscolores <- rainbow(12,0.25)
+gb <- hist(contaminacion, breaks = breaks_exactos, plot = FALSE) #histograma simple de los datos
+gb2 <- hist(contaminacion, breaks = breaks_exactos, col = miscolores, 
+          main = "Nivel de contaminación en el mes de julio",
+          xlab = "Nivel de contaminación en el mes de julio",
+          ylab = "Frecuencias",
+          ylim = c(0, max(gb$counts)*1.5))
+
+text(gb2$mids, gb2$counts, labels = gb2$counts, pos = 3, cex = 0.8, 
+     col = "black")
+
+nl <- length(gb2$counts)
+legend(
+  "topright",
+  legend = gb2$counts,
+  fill = miscolores[1:nl],  # Solo los colores necesarios
+  pt.cex = 1.5,
+  cex = 0.5,
+  bty = "n"
+)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(10,4,4,2))
+
+intervalos <- cut(contaminacion, breaks = breaks_exactos, include.lowest = TRUE)
+tabla_intervalos <- table(intervalos)
+porcentajes_intervalos <- round(prop.table(tabla_intervalos) * 100, 1)
+gp <- barplot(porcentajes_intervalos, 
+                 col = rainbow(length(tabla_intervalos), 0.4),
+                 main = "Porcentajes de nivel de contaminación en el mes de julio",
+                 xlab = "",
+                 ylab = "Porcentaje (%)",
+                 ylim = c(0, max(porcentajes_intervalos) + 5),
+                 las = 2)  # Etiquetas verticales
+
+title(xlab = "Nivel de contaminación en el mes de julio", line = 8)
+
+# Agregar valores encima de barras
+text(x = gp,
+     y = porcentajes_intervalos,
+     labels = paste0(porcentajes_intervalos, "%"),
+     pos = 3,
+     cex = 0.8,
+     font = 2)
+
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+par(pin = c(7, 5))
+pie(tabla_intervalos,
+    main = "Distribución de nivel de contaminación en el mes de julio",
+    col = rainbow(length(tabla_intervalos), 0.7),
+    labels = paste(names(tabla_intervalos), "(", porcentajes_intervalos, "%)"),,
+    cex.main = 1.5)
+```
+
+#### Gráfica de ojiva
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(8,4,4,2))
+frec_acum <- cumsum(table(factor(contaminacion)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de nivel de contaminación en el mes de julio",
+     xlab = "Nivel de contaminación",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+```
+
+#### Gráfica de dispersión
+
+```{r}
+indices <- 1:10; (indices)
+t <- cte*indices; (t)
+mis_deciles <- tabla_intervalos[t]; (mis_deciles)
+plot(contaminacion,
+  main = "Gráfica de dispersión de nivel de contaminación en el mes de julio",
+  xlab = "Datos en el intervalo",
+  ylab = "Intervalo de contaminación",
+  col = "blue",       
+  pch = 19,           
+  cex = 0.5,          
+  cex.main = 1.5,     
+  cex.lab = 1.2,      
+  col.main = "darkred")
+legend(
+  "topright",                  # ubicación
+  legend = c(mi_min,mi_max),    # etiquetas
+  pch = 17,
+  col=c("purple","orange"),
+  pt.cex = 1.5,                # tamaño de los símbolos
+  cex = 0.7,
+  bty = "n"                    # sin borde en la caja
+)
+abline(h = media, col = "red", lwd = 1, lty = 2)     
+abline(h = Q2, col = "lightgreen", lwd = 1, lty = 3) 
+abline(h = mis_deciles, col = "lightgray", lty = 1.5)
+points(which.min(contaminacion), min(contaminacion), col = "purple", pch = 17, cex = 1.5)
+points(which.max(contaminacion), max(contaminacion), col = "orange", pch = 17, cex = 1.5)
+```
+
+#### Gráfica combinada
+
+```{r}
+nbreaks <- 10
+h <- hist(contaminacion, breaks = breaks_exactos, plot = FALSE)
+hist(contaminacion,
+     breaks = breaks_exactos,
+     col = "lightblue",
+     main = "Histograma y Ojiva (%)",
+     xlab = "Nivel de contaminación en el mes de julio",
+     ylab = "Frecuencia")
+freq_acum_pct <- cumsum(h$counts) / sum(h$counts) * 100
+x_vals <- h$breaks[-1]
+par(new = TRUE)
+plot(x_vals, freq_acum_pct,
+     type = "o", pch = 19, lwd = 2, col = "red",
+     axes = FALSE, xlab = "", ylab = "",
+     xlim = range(h$breaks), ylim = c(0, 100))
+axis(4)                           # eje derecho
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+
+
+## Ejercicio 9.4 Temperatura en grados Celsius
+
+### Datos
+
+```{r}
+temperatura<- c(20.1, 23.1, 30.6, 32.3, 31.7, 5, 21.1, 27.4, 21.3, 29, 19.8, 15.3, 28.7, 25.1, 14.3, 23.3, 28.7, 17.7, 30.3, 26.7, 26.2, 11.4, 25.5, 15, 23.8, 23.9, 16.2, 26, 12.7, 32.8, 19.2, 37.2, 10.3, 25, 14.9, 30.9, 19, 23.64, 24.1, 13.1, 17.6, 31.9, 25.7, 13.6, 21.6, 14.4, 29.5, 7.75, 33.7, 35.2)
+```
+
+### Procesamiento de datos (Ordenar)
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(temperatura)
+```
+
+Al ser variables de tipo cuantitativa discretas se pueden ordenar.
+
+### Frecuencias (Clasificar)
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(temperatura) #Datos
+temperatura_ord<- sort(temperatura) #Datos ordenados por clase
+(temperatura_ord)
+contador <- table(temperatura) #Frecuencia de los datos
+(contador)
+cte<- 9
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(temperatura)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+  # Calcular mediana
+  mediana<- median(temperatura)
+  cat("La mediana es:", mediana, "\n")
+
+
+```
+
+#### Media
+
+Obtenemos la media
+
+```{r}
+media<-mean(temperatura)
+cat("La media es:", media, "\n")
+```
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+cuantiles <- quantile(temperatura_ord); (cuantiles)
+Q1 <- cuantiles[2]; (Q1)
+Q2 <- cuantiles[3]; (Q2)
+Q3 <- cuantiles[4]; (Q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(temperatura);
+(mi_min)
+mi_max <- max(temperatura);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+boxplot(temperatura_ord, horizontal = TRUE, col = "lightblue")
+```
+
+### Medidas de dispersión
+
+#### Varianza
+```{r}
+varianza <- var(temperatura); (varianza) 
+```
+
+#### Desviación estándar
+```{r}
+DesvEst <- sd(temperatura); (DesvEst)
+```
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Generemos la gráfica de barras.
+
+```{r}
+# Regla de Sturges lo que nos da el número de intervalos
+n <- length(temperatura)
+nbreaks <- round(1 + 3.322 * log10(n))
+(nbreaks)
+rango <- range(temperatura)
+breaks_exactos <- seq(from = rango[1], to = rango[2], length.out = nbreaks + 1)
+
+par(mar=c(8,4,4,2))
+miscolores <- rainbow(12,0.25)
+gb <- hist(temperatura, breaks = breaks_exactos, plot = FALSE) #histograma simple de los datos
+gb2 <- hist(temperatura, breaks = breaks_exactos, col = miscolores, 
+          main = "Temperatura en grados Celsius",
+          xlab = "Temperatura en grados Celsius",
+          ylab = "Frecuencias",
+          ylim = c(0, max(gb$counts)*1.5))
+
+text(gb2$mids, gb2$counts, labels = gb2$counts, pos = 3, cex = 0.8, 
+     col = "black")
+
+nl <- length(gb2$counts)
+legend(
+  "topright",
+  legend = gb2$counts,
+  fill = miscolores[1:nl],  # Solo los colores necesarios
+  pt.cex = 1.5,
+  cex = 0.5,
+  bty = "n"
+)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(10,4,4,2))
+
+intervalos <- cut(temperatura, breaks = breaks_exactos, include.lowest = TRUE)
+tabla_intervalos <- table(intervalos)
+porcentajes_intervalos <- round(prop.table(tabla_intervalos) * 100, 1)
+gp <- barplot(porcentajes_intervalos, 
+                 col = rainbow(length(tabla_intervalos), 0.4),
+                 main = "Porcentajes de temperatura en grados Celsius",
+                 xlab = "",
+                 ylab = "Porcentaje (%)",
+                 ylim = c(0, max(porcentajes_intervalos) + 5),
+                 las = 2)  # Etiquetas verticales
+
+title(xlab = "Temperatura en grados Celsius", line = 8)
+
+# Agregar valores encima de barras
+text(x = gp,
+     y = porcentajes_intervalos,
+     labels = paste0(porcentajes_intervalos, "%"),
+     pos = 3,
+     cex = 0.8,
+     font = 2)
+
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+par(pin = c(7, 5))
+pie(tabla_intervalos,
+    main = "Distribución de temperaturas en °C",
+    col = rainbow(length(tabla_intervalos), 0.7),
+    labels = NA,
+    cex.main = 1.5)
+
+legend(x =0.78, y = 0.8,
+       legend = paste(names(tabla_intervalos), "(", porcentajes_intervalos, "%)"),
+       fill = rainbow(length(tabla_intervalos), 0.7),
+       cex = 0.7,
+       title = "Intervalos de °C",
+       title.cex = 0.9)
+```
+
+#### Gráfica de ojiva
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(8,4,4,2))
+frec_acum <- cumsum(table(factor(temperatura)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de temperatura en grados Celsius",
+     xlab = "Temperatura en grados Celsius",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+```
+
+#### Gráfica de dispersión
+
+```{r}
+indices <- 1:10; (indices)
+t <- cte*indices; (t)
+mis_deciles <- tabla_intervalos[t]; (mis_deciles)
+plot(temperatura,
+  main = "Gráfica de dispersión de temperatura en grados Celsius",
+  xlab = "Datos en el intervalo",
+  ylab = "Intervalo de temperaturas",
+  col = "blue",       
+  pch = 19,           
+  cex = 0.5,          
+  cex.main = 1.5,     
+  cex.lab = 1.2,      
+  col.main = "darkred")
+legend(
+  "topright",                  # ubicación
+  legend = c(mi_min,mi_max),    # etiquetas
+  pch = 17,
+  col=c("purple","orange"),
+  pt.cex = 1.5,                # tamaño de los símbolos
+  cex = 0.7,
+  bty = "n"                    # sin borde en la caja
+)
+abline(h = media, col = "red", lwd = 1, lty = 2)     
+abline(h = Q2, col = "lightgreen", lwd = 1, lty = 3) 
+abline(h = mis_deciles, col = "lightgray", lty = 1.5)
+points(which.min(temperatura), min(temperatura), col = "purple", pch = 17, cex = 1.5)
+points(which.max(temperatura), max(temperatura), col = "orange", pch = 17, cex = 1.5)
+```
+
+#### Gráfica combinada
+
+```{r}
+nbreaks <- 10
+h <- hist(temperatura, breaks = breaks_exactos, plot = FALSE)
+hist(temperatura,
+     breaks = breaks_exactos,
+     col = "lightblue",
+     main = "Histograma y Ojiva (%)",
+     xlab = "Temperatura en grados Celsius",
+     ylab = "Frecuencia")
+freq_acum_pct <- cumsum(h$counts) / sum(h$counts) * 100
+x_vals <- h$breaks[-1]
+par(new = TRUE)
+plot(x_vals, freq_acum_pct,
+     type = "o", pch = 19, lwd = 2, col = "red",
+     axes = FALSE, xlab = "", ylab = "",
+     xlim = range(h$breaks), ylim = c(0, 100))
+axis(4)                           # eje derecho
+#---- Fin ----
+```
+
+
+
+
+
+
+
+
+
+
+## Ejercicio 9.5 Tiempos de traslado en horas
+
+### Datos
+
+```{r}
+horas<- c(1.5, 1.3, 1.1, 0.6, 0.9, 1.4, 0.8, 1.7, 1.7, 1.6, 1.7, 1.3, 1.5, 0.5, 1.4, 0.6, 1.5, 1.9, 0.7, 1.9, 2, 1.6, 0.7, 1.6, 0.7, 0.5, 0.6, 1.6, 1.4, 1.9, 1.9, 1, 1.7, 1.7, 1.8, 1.6, 1.4, 1.4, 0.7, 0.8, 1.5, 0.8, 1.9, 1.2, 1.9, 1.8, 1.7, 1.5, 1.5, 0.7, 1.8, 1.3, 1.8, 0.6, 1.5, 1.4, 1.3, 1.3, 0.8, 1.4, 0.6, 1.1, 1.1, 0.6, 1.7, 0.5, 2, 1.7, 0.7, 1, 0.6, 1.8, 1.1, 1.6, 1, 1.1, 1.8, 0.8, 1.1, 1.7, 1.4, 1.4, 1.2, 1.5, 1.6, 1.6, 1.5, 0.5, 1.4, 1.1, 1, 0.9, 0.6, 1.7, 1.6, 1.2, 0.6, 1.2, 1.2, 1.8)
+```
+
+### Procesamiento de datos (Ordenar)
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(horas)
+```
+
+Al ser variables de tipo cuantitativa discretas se pueden ordenar.
+
+### Frecuencias (Clasificar)
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(horas) #Datos
+horas_ord<- sort(horas) #Datos ordenados por clase
+(horas_ord)
+contador <- table(horas) #Frecuencia de los datos
+(contador)
+cte<- 9
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(horas)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+#### Moda
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+```
+
+#### Mediana
+
+Obtenemos la mediana
+
+```{r}
+  # Calcular mediana
+  mediana<- median(horas)
+  cat("La mediana es:", mediana, "\n")
+
+
+```
+
+#### Media
+
+Obtenemos la media
+
+```{r}
+media<-mean(horas)
+cat("La media es:", media, "\n")
+```
+
+### Medidas de localización
+
+#### Cuartiles
+
+```{r}
+cuantiles <- quantile(horas_ord); (cuantiles)
+Q1 <- cuantiles[2]; (Q1)
+Q2 <- cuantiles[3]; (Q2)
+Q3 <- cuantiles[4]; (Q3)
+
+```
+
+Calculemos el valor máximo y el valor mínimo para los datos
+
+```{r}
+mi_min <- min(horas);
+(mi_min)
+mi_max <- max(horas);
+(mi_max)
+```
+
+### Diagrama de caja y brazos
+
+```{r}
+boxplot(horas_ord, horizontal = TRUE, col = "lightblue")
+```
+
+### Medidas de dispersión
+
+#### Varianza
+```{r}
+varianza <- var(horas); (varianza) 
+```
+
+#### Desviación estándar
+```{r}
+DesvEst <- sd(horas); (DesvEst)
+```
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Generemos la gráfica de barras.
+
+```{r}
+# Regla de Sturges lo que nos da el número de intervalos
+n <- length(horas)
+nbreaks <- round(1 + 3.322 * log10(n))
+(nbreaks)
+rango <- range(horas)
+breaks_exactos <- seq(from = rango[1], to = rango[2], length.out = nbreaks + 1)
+
+par(mar=c(8,4,4,2))
+miscolores <- rainbow(12,0.25)
+gb <- hist(horas, breaks = breaks_exactos, plot = FALSE) #histograma simple de los datos
+gb2 <- hist(horas, breaks = breaks_exactos, col = miscolores, 
+          main = "Tiempos de traslado en horas",
+          xlab = "Tiempos de traslado en horas",
+          ylab = "Frecuencias",
+          ylim = c(0, max(gb$counts)*1.5))
+
+text(gb2$mids, gb2$counts, labels = gb2$counts, pos = 3, cex = 0.8, 
+     col = "black")
+
+nl <- length(gb2$counts)
+legend(
+  "topright",
+  legend = gb2$counts,
+  fill = miscolores[1:nl],  # Solo los colores necesarios
+  pt.cex = 1.5,
+  cex = 0.5,
+  bty = "n"
+)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+par(mar=c(10,4,4,2))
+
+intervalos <- cut(horas, breaks = breaks_exactos, include.lowest = TRUE)
+tabla_intervalos <- table(intervalos)
+porcentajes_intervalos <- round(prop.table(tabla_intervalos) * 100, 1)
+gp <- barplot(porcentajes_intervalos, 
+                 col = rainbow(length(tabla_intervalos), 0.4),
+                 main = "Porcentajes de tiempos de traslado en horas",
+                 xlab = "",
+                 ylab = "Porcentaje (%)",
+                 ylim = c(0, max(porcentajes_intervalos) + 5),
+                 las = 2)  # Etiquetas verticales
+
+title(xlab = "Tiempos de traslado en horas", line = 8)
+
+# Agregar valores encima de barras
+text(x = gp,
+     y = porcentajes_intervalos,
+     labels = paste0(porcentajes_intervalos, "%"),
+     pos = 3,
+     cex = 0.8,
+     font = 2)
+
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+par(pin = c(7, 5))
+pie(tabla_intervalos,
+    main = "Distribución de tiempos de traslado en horas",
+    col = rainbow(length(tabla_intervalos), 0.7),
+    labels = NA,
+    cex.main = 1.5)
+
+legend(x =0.78, y = 0.8,
+       legend = paste(names(tabla_intervalos), "(", porcentajes_intervalos, "%)"),
+       fill = rainbow(length(tabla_intervalos), 0.7),
+       cex = 0.7,
+       title = "Intervalos de horas",
+       title.cex = 0.9)
+```
+
+#### Gráfica de ojiva
+
+Generamos la gráfica de ojiva
+
+```{r}
+par(mar=c(8,4,4,2))
+frec_acum <- cumsum(table(factor(horas)))
+plot(frec_acum, type = "b", pch = 16, col = "darkblue",
+     main = "Ojiva de tiempos de traslado en horas",
+     xlab = "Tiempos de traslado en horas",
+     ylab = "Frecuencia Acumulada",
+     xaxt = "n")
+```
+
+#### Gráfica de dispersión
+
+```{r}
+indices <- 1:10; (indices)
+t <- cte*indices; (t)
+mis_deciles <- tabla_intervalos[t]; (mis_deciles)
+plot(horas,
+  main = "Gráfica de dispersión de tiempos de traslado en horas",
+  xlab = "Datos en el intervalo",
+  ylab = "Intervalo de horas",
+  col = "blue",       
+  pch = 19,           
+  cex = 0.5,          
+  cex.main = 1.5,     
+  cex.lab = 1.2,      
+  col.main = "darkred")
+legend(
+  "topright",                  # ubicación
+  legend = c(mi_min,mi_max),    # etiquetas
+  pch = 17,
+  col=c("purple","orange"),
+  pt.cex = 1.5,                # tamaño de los símbolos
+  cex = 0.7,
+  bty = "n"                    # sin borde en la caja
+)
+abline(h = media, col = "red", lwd = 1, lty = 2)     
+abline(h = Q2, col = "lightgreen", lwd = 1, lty = 3) 
+abline(h = mis_deciles, col = "lightgray", lty = 1.5)
+points(which.min(horas), min(horas), col = "purple", pch = 17, cex = 1.5)
+points(which.max(horas), max(horas), col = "orange", pch = 17, cex = 1.5)
+```
+
+#### Gráfica combinada
+
+```{r}
+nbreaks <- 10
+h <- hist(horas, breaks = breaks_exactos, plot = FALSE)
+hist(horas,
+     breaks = breaks_exactos,
+     col = "lightblue",
+     main = "Histograma y Ojiva (%)",
+     xlab = "Tiempos de traslado en horas",
+     ylab = "Frecuencia")
+freq_acum_pct <- cumsum(h$counts) / sum(h$counts) * 100
+x_vals <- h$breaks[-1]
+par(new = TRUE)
+plot(x_vals, freq_acum_pct,
+     type = "o", pch = 19, lwd = 2, col = "red",
+     axes = FALSE, xlab = "", ylab = "",
+     xlim = range(h$breaks), ylim = c(0, 100))
+axis(4)                           # eje derecho
+#---- Fin ----
+```
+
+
+
+
+
+
+
+# Ejercicio 10: Binarias o dicotómicas
+
+## Ejercicio 10.1 Licencia de conducir
+
+### Datos
+
+```{r}
+licencia <- c("No", "Si", "No", "Si", "Si", "No", "Si", "No", "No", "No", "Si", "Si", "No", "No", "Si", "No", "No", "Si", "No", "No", "Si", "Si", "Si", "No", "No", "Si", "No", "Si", "No", "No", "No", "No", "Si", "Si", "No", "Si", "Si", "No", "Si", "Si", "No", "Si", "No", "No", "Si", "No", "No", "No", "No", "Si", "Si", "Si", "No", "Si", "No", "No", "No", "No", "Si", "Si", "No", "Si", "No", "Si", "No", "No", "No", "Si", "No", "Si", "No", "Si", "Si", "No", "No")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(licencia)
+```
+
+Al ser variables de tipo Binarias o Dicotómicas no se pueden ordenar ni se pueden obtener los deciles ni cuartiles.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(licencia) #Datos
+sort(licencia) #Datos ordenados por clase
+contador <- table(licencia) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(licencia)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica de barras
+
+Generemos la gráfica de barras.
+
+```{r}
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre licencias de conducir",
+        xlab="Licencia de conducir",
+        ylab="Frecuencias",
+        ylim=c(0,45),
+        )
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+tabla <- table(licencia); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de licencia de conducir",
+    xlab = "Licencia de conducir",
+    ylab="Porcentaje (%)",
+    ylim=c(0,60),
+        )
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de licencia de conducir",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+#---- Fin ----
+```
+
+
+
+
+
+
+## Ejercicio 10.2 Examen
+
+### Datos
+
+```{r}
+examen <- c("Reprobado", "Aprobado", "Aprobado", "Aprobado", "Aprobado", "Reprobado", "Aprobado", "Reprobado", "Reprobado", "Aprobado", "Reprobado", "Reprobado", "Reprobado", "Reprobado", "Aprobado", "Reprobado", "Reprobado", "Aprobado", "Aprobado", "Reprobado", "Aprobado", "Aprobado", "Aprobado", "Aprobado", "Reprobado", "Aprobado", "Reprobado", "Aprobado", "Reprobado", "Reprobado", "Aprobado", "Reprobado", "Aprobado", "Reprobado", "Aprobado", "Reprobado", "Reprobado", "Aprobado", "Reprobado", "Reprobado", "Reprobado", "Aprobado", "Aprobado", "Aprobado", "Aprobado", "Reprobado", "Reprobado", "Reprobado", "Aprobado", "Reprobado")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(examen)
+```
+
+Al ser variables de tipo Binarias o Dicotómicas no se pueden ordenar ni se pueden obtener los deciles ni cuartiles.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(examen) #Datos
+sort(examen) #Datos ordenados por clase
+contador <- table(examen) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(examen)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica de barras*
+
+Generemos la gráfica de barras.
+
+```{r}
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre examenes",
+        xlab="Examen",
+        ylab="Frecuencias",
+        ylim=c(0,45),
+        )
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+tabla <- table(examen); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de licencia de conducir",
+    xlab = "Licencia de conducir",
+    ylab="Porcentaje (%)",
+    ylim=c(0,60),
+        )
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de examenes",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+#---- Fin ----
+```
+
+
+
+
+
+
+## Ejercicio 10.3 COVID
+
+### Datos
+
+```{r}
+covid <- c("Negativo", "Positivo", "Negativo", "Negativo", "Negativo", "Positivo", "Positivo", "Negativo", "Negativo", "Positivo", "Negativo", "Positivo", "Positivo", "Negativo", "Negativo", "Negativo", "Negativo", "Negativo", "Negativo", "Negativo", "Positivo", "Positivo", "Negativo", "Negativo", "Positivo", "Negativo", "Positivo", "Negativo", "Negativo", "Positivo", "Positivo", "Negativo", "Positivo", "Positivo", "Negativo", "Positivo", "Negativo", "Negativo", "Negativo", "Negativo", "Positivo", "Negativo", "Positivo", "Negativo", "Negativo", "Negativo", "Negativo", "Negativo", "Negativo", "Negativo")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(covid)
+```
+
+Al ser variables de tipo Binarias o Dicotómicas no se pueden ordenar ni se pueden obtener los deciles ni cuartiles.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(covid) #Datos
+sort(covid) #Datos ordenados por clase
+contador <- table(covid) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(covid)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica de barras*
+
+Generemos la gráfica de barras.
+
+```{r}
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre resultados COVID",
+        xlab="Resultado",
+        ylab="Frecuencias",
+        ylim=c(0,45),
+        )
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+tabla <- table(covid); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de resultados COVID",
+    xlab = "Resultados",
+    ylab="Porcentaje (%)",
+    ylim=c(0,80),
+    )
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de resultados COVID",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+#---- Fin ----
+```
+
+
+
+
+
+
+# Ejercicio 11: Politómicas
+
+## Ejercicio 11.1 Tipo de sangre
+
+### Datos
+
+```{r}
+tipo <- c("A-", "AB-", "AB+", "B+", "O-", "O+", "B+", "A-", "O-", "B-", "A-", "A-", "O+", "A+", "O+", "AB+", "B+", "AB+", "AB-", "B-", "O-", "O+", "B+", "O+", "O+", "O+", "A+", "O-", "AB-", "A-", "B+", "O-", "B-", "A-", "A-", "AB-", "B+", "AB-", "A-", "B+", "A-", "AB-", "O-", "AB+", "B+", "O+", "B-", "O-", "A-", "AB-", "O+", "AB+", "AB+", "B+", "O-", "AB+", "AB+", "AB-", "A-", "O-", "AB+", "AB+", "A+", "A+", "O+", "B+", "AB-", "O-", "A-", "A+", "A+", "B-", "B-", "B-", "A+", "A-", "AB-", "A-", "A-", "AB+")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(tipo)
+```
+
+Al ser variables de tipo Binarias o Dicotómicas no se pueden ordenar ni se pueden obtener los deciles ni cuartiles.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(tipo) #Datos
+sort(tipo) #Datos ordenados por clase
+contador <- table(tipo) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(tipo)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica de barras*
+
+Generemos la gráfica de barras.
+
+```{r}
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre tipo de sangre",
+        xlab="Tipo de sangre",
+        ylab="Frecuencias",
+        ylim=c(0,20),
+        )
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+tabla <- table(tipo); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de tipos de sangre",
+    xlab = "Tipo de sangre",
+    ylab="Porcentaje (%)",
+    ylim=c(0,25),
+    )
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de tipos de sangre",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+#---- Fin ----
+```
+
+
+
+
+
+
+## Ejercicio 11.2: Ocupación
+
+### Datos
+
+```{r}
+ocupacion <- c("Desempleado", "Estudiante", "Empleado", "Empleado", "Estudiante", "Empleado",
+"Empleado", "Empleado", "Jubilado", "Jubilado", "Jubilado", "Jubilado", "Jubilado", "Estudiante",
+"Desempleado", "Desempleado", "Jubilado", "Empleado", "Estudiante", "Estudiante", "Empleado",
+"Desempleado", "Estudiante", "Desempleado", "Jubilado", "Empleado", "Jubilado", "Desempleado",
+"Desempleado", "Desempleado")
+```
+
+### Procesamiento de datos
+
+Primero obtenemos un resumen de los datos generados
+
+```{r}
+summary(ocupacion)
+```
+
+Al ser variables de tipo Binarias o Dicotómicas no se pueden ordenar ni se pueden obtener los deciles ni cuartiles.
+
+### Frecuencias
+
+Obtenemos las frecuencias de los datos.
+
+```{r}
+(ocupacion) #Datos
+sort(ocupacion) #Datos ordenados por clase
+contador <- table(ocupacion) #Frecuencia de los datos
+(contador)
+```
+
+### Proporciones
+
+Obtenemos las proporciones.
+
+```{r}
+prop.table(table(ocupacion)) #Proporciones
+```
+
+### Medidas de tendencia central
+
+Obtenemos la moda
+
+```{r}
+# Función para detectar modalidad
+max_frecuencia <- max(contador)
+modas <- names(contador)[contador == max_frecuencia]
+
+# Identificar e imprimir resultado
+if(length(modas) == 1) {
+  cat("UNIMODAL - Moda:", modas)
+} else if(length(modas) == 2) {
+  cat("BIMODAL - Modas:", paste(modas, collapse = " y "))
+} else {
+  cat("Hay más de dos clases con mayor frecuencia por lo tanto no hay moda")
+}
+
+```
+
+### Gráficos
+
+Comenzamos a graficar.
+
+#### Gráfica de barras*
+
+Generemos la gráfica de barras.
+
+```{r}
+gb<-barplot(contador, col=rainbow(10,0.4),
+        main="Frecuencias sobre ocupaciones",
+        xlab="Ocupaciones",
+        ylab="Frecuencias",
+        ylim=c(0,10),
+        )
+# Agregar valores encima de cada barra
+text(x=gb,
+     y=contador, 
+     labels=contador,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de porcentajes
+
+Generamos la gráfica de porcentajes.
+
+```{r}
+tabla <- table(ocupacion); (tabla)
+porcentajes <-  round(prop.table(tabla)* 100, 1); (porcentajes)
+gp<- barplot(porcentajes, col = rainbow(length(tabla),0.4),
+    main = "Porcentajes de ocupaciones",
+    xlab = "Ocupación",
+    ylab="Porcentaje (%)",
+    ylim=c(0,30),
+    )
+# Agregar valores encima de cada barra
+text(x=gp,
+     y=porcentajes, 
+     labels=porcentajes,
+     pos=3,
+     cex=1,
+     font=2)
+```
+
+#### Gráfica de pasteles
+
+Generamos la gráfica de pasteles.
+
+```{r}
+pie(tabla,
+    main = "Distribución de ocupaciones",
+    col = rainbow(length(tabla),0.4),
+    labels = paste0(names(tabla)," ",porcentajes, "%"))
+#---- Fin ----
+```
