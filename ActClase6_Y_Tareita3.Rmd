@@ -1,0 +1,1521 @@
+---
+title: "Clase 6 y Tareita 3 de Estadística y Probabilidad    24-09-2025"
+author: "Diana Laura Pais Felipe     Matrícula:23-002-0030"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    code_folding: show
+    theme: bootstrap
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Discretas
+
+## Generación binomial
+
+### n1 = 100
+```{r}
+n1<- 100;
+k<- 25 #proporción
+p<- 0.3 #probabilidad
+```
+
+```{r}
+mibinomial<- rbinom(n1,k,p)
+```
+
+```{r}
+plot(mibinomial,col="pink", 
+     main="100 Binomial (k,p)",
+     xlab="Num de Binomial",
+     ylab="N=100")
+
+```
+
+```{r}
+hist(mibinomial,main="Histograma 100 Binomial",
+     col = "lightgreen",
+     xlab = "Binomiales(k,p) generados",
+     ylab = "N=100")
+```
+
+### n2 = 500
+
+```{r}
+n2<- 500;
+k<- 25 #proporción
+p<- 0.3 #probabilidad
+```
+
+```{r}
+mibinomial<- rbinom(n2,k,p)
+```
+
+```{r}
+plot(mibinomial,col="pink", 
+     main="500 Binomial (k,p)",
+     xlab="Num de Binomial",
+     ylab="N=500")
+
+```
+
+```{r}
+hist(mibinomial,main="Histograma 500 Binomial",
+     col = "lightgreen",
+     xlab = "Binomiales (k,p) generados",
+     ylab = "N=500")
+```
+
+### n3 = 1,000
+
+```{r}
+n3<- 1000;
+k<- 25 #proporción
+p<- 0.3 #probabilidad
+```
+
+```{r}
+mibinomial<- rbinom(n3,k,p)
+```
+
+```{r}
+plot(mibinomial,col="pink", 
+     main="1000 Binomial (k,p)",
+     xlab="Num de Binomial",
+     ylab="N=1000")
+
+```
+
+```{r}
+hist(mibinomial,main="Histograma 1000 Binomial",
+     col = "lightgreen",
+     xlab = "Binomiales (k,p) generados",
+     ylab = "N=1000")
+```
+
+### n4 = 1,000
+
+
+```{r}
+n4<- 1000;
+k<- 25 #proporción
+p<- 0.3 #probabilidad
+```
+
+```{r}
+mibinomial<- rbinom(n4,k,p)
+```
+
+```{r}
+plot(mibinomial,col="pink", 
+     main="1000 Binomial (k,p)",
+     xlab="Num de Binomial",
+     ylab="N=1000")
+
+```
+
+```{r}
+hist(mibinomial,main="Histograma 1000 Binomial",
+     col = "lightgreen",
+     xlab = "Binomiales (k,p) generados",
+     ylab = "N=1000")
+```
+
+### n5 = 15,000
+
+
+```{r}
+n5<- 15000;
+k<- 25 #proporción
+p<- 0.3 #probabilidad
+```
+
+```{r}
+mibinomial<- rbinom(n5,k,p)
+```
+
+```{r}
+plot(mibinomial,col="pink", 
+     main="15,000 Binomial (k,p)",
+     xlab="Num de Binomial",
+     ylab="N=1000")
+
+```
+
+```{r}
+hist(mibinomial,main="Histograma 15,000 Binomial",
+     col = "lightgreen",
+     xlab = "Binomiales (k,p) generados",
+     ylab = "N=15,000")
+```
+
+# Tareita 3:
+
+## Generación binomial con p=0.2
+
+```{r}
+n1<- 100
+n2<- 500
+n3<- 1000
+n4<- 5000
+n5<- 10000
+n6<- 15000
+k<- 25 #proporción
+```
+
+### n1 = 100
+
+```{r}
+p<- 0.2 #probabilidad
+mibinomial<- rbinom(n1,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+### n2 = 500
+
+```{r}
+mibinomial<- rbinom(n2,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n3 = 1,000
+
+```{r}
+mibinomial<- rbinom(n3,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n4 = 1,000
+
+
+```{r}
+mibinomial<- rbinom(n4,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n5 = 10,000
+
+
+```{r}
+mibinomial<- rbinom(n5,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n5, "Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n6 = 15,000
+
+
+```{r}
+mibinomial<- rbinom(n6,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+## Generación binomial con p=0.3
+
+### n1 = 100
+
+```{r}
+p<- 0.3 #probabilidad
+mibinomial<- rbinom(n1,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+### n2 = 500
+
+```{r}
+mibinomial<- rbinom(n2,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n3 = 1,000
+
+```{r}
+mibinomial<- rbinom(n3,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n4 = 1,000
+
+
+```{r}
+mibinomial<- rbinom(n4,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n5 = 10,000
+
+
+```{r}
+mibinomial<- rbinom(n5,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n5, "Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n6 = 15,000
+
+
+```{r}
+mibinomial<- rbinom(n6,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+## Generación binomial con p=0.45
+
+### n1 = 100
+
+```{r}
+p<- 0.45 #probabilidad
+mibinomial<- rbinom(n1,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+### n2 = 500
+
+```{r}
+mibinomial<- rbinom(n2,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n3 = 1,000
+
+```{r}
+mibinomial<- rbinom(n3,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n4 = 1,000
+
+
+```{r}
+mibinomial<- rbinom(n4,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n5 = 10,000
+
+
+```{r}
+mibinomial<- rbinom(n5,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n5, "Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n6 = 15,000
+
+
+```{r}
+mibinomial<- rbinom(n6,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+## Generación binomial con p=0.8
+
+### n1 = 100
+
+```{r}
+p<- 0.8 #probabilidad
+mibinomial<- rbinom(n1,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+### n2 = 500
+
+```{r}
+mibinomial<- rbinom(n2,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n3 = 1,000
+
+```{r}
+mibinomial<- rbinom(n3,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n4 = 1,000
+
+
+```{r}
+mibinomial<- rbinom(n4,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n5 = 10,000
+
+
+```{r}
+mibinomial<- rbinom(n5,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n5, "Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n6 = 15,000
+
+
+```{r}
+mibinomial<- rbinom(n6,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+## Generación binomial con p=0.95
+
+### n1 = 100
+
+```{r}
+p<- 0.95 #probabilidad
+mibinomial<- rbinom(n1,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+### n2 = 500
+
+```{r}
+mibinomial<- rbinom(n2,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n3 = 1,000
+
+```{r}
+mibinomial<- rbinom(n3,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n4 = 1,000
+
+
+```{r}
+mibinomial<- rbinom(n4,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, "Binomial ")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n5 = 10,000
+
+
+```{r}
+mibinomial<- rbinom(n5,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n5, "Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n6 = 15,000
+
+
+```{r}
+mibinomial<- rbinom(n6,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+
+
+## Generación binomial con k=30
+
+### n1 = 100
+
+```{r}
+p<-0.3
+```
+
+```{r}
+k<- 30 #probabilidad
+mibinomial<- rbinom(n1,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+### n2 = 500
+
+```{r}
+mibinomial<- rbinom(n2,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n3 = 1,000
+
+```{r}
+mibinomial<- rbinom(n3,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n4 = 1,000
+
+
+```{r}
+mibinomial<- rbinom(n4,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, "Binomial ")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n5 = 10,000
+
+
+```{r}
+mibinomial<- rbinom(n5,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n5, "Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n6 = 15,000
+
+
+```{r}
+mibinomial<- rbinom(n6,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+## Generación binomial con k=45
+
+### n1 = 100
+
+```{r}
+k<- 45 #probabilidad
+mibinomial<- rbinom(n1,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+### n2 = 500
+
+```{r}
+mibinomial<- rbinom(n2,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n3 = 1,000
+
+```{r}
+mibinomial<- rbinom(n3,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n4 = 1,000
+
+
+```{r}
+mibinomial<- rbinom(n4,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n5 = 10,000
+
+
+```{r}
+mibinomial<- rbinom(n5,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n5, "Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n6 = 15,000
+
+
+```{r}
+mibinomial<- rbinom(n6,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+## Generación binomial con k=80
+
+### n1 = 100
+
+```{r}
+k<- 80 #probabilidad
+mibinomial<- rbinom(n1,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+### n2 = 500
+
+```{r}
+mibinomial<- rbinom(n2,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n3 = 1,000
+
+```{r}
+mibinomial<- rbinom(n3,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n4 = 1,000
+
+
+```{r}
+mibinomial<- rbinom(n4,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n5 = 10,000
+
+
+```{r}
+mibinomial<- rbinom(n5,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n5, "Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n6 = 15,000
+
+
+```{r}
+mibinomial<- rbinom(n6,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+## Generación binomial con k=95
+
+### n1 = 100
+
+```{r}
+k<- 95 #probabilidad
+mibinomial<- rbinom(n1,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+### n2 = 500
+
+```{r}
+mibinomial<- rbinom(n2,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n3 = 1,000
+
+```{r}
+mibinomial<- rbinom(n3,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n4 = 1,000
+
+
+```{r}
+mibinomial<- rbinom(n4,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n5 = 10,000
+
+
+```{r}
+mibinomial<- rbinom(n5,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n5, "Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### n6 = 15,000
+
+
+```{r}
+mibinomial<- rbinom(n6,k,p)
+```
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
