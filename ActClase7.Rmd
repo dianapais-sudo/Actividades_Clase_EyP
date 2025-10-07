@@ -1,0 +1,3722 @@
+---
+title: "Clase 7 de Estadística y Probabilidad    01-10-2025"
+author: "Diana Laura Pais Felipe     Matrícula:23-002-0030"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 6
+    code_folding: show
+    theme: bootstrap
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Discretas
+
+## Generación Binomial
+
+```{r}
+n1<- 100
+n2<- 500
+n3<- 1000
+n4<- 5000
+n5<- 10000
+n6<- 15000
+k<- 25 #proporción
+k1<- 30
+k2<- 45
+k3<- 80
+k4<- 95
+p1<- 0.20 #probabilidad
+p2<- 0.30
+p3<- 0.45
+p4<- 0.80
+p5<- 0.95
+```
+
+### Variando $p$ con $k = 25$ constante
+
+#### Variando $p=0.2$
+
+```{r}
+mibinomial1<- rbinom(n1,k,p1)
+mibinomial2<- rbinom(n2,k,p1)
+mibinomial3<- rbinom(n3,k,p1)
+mibinomial4<- rbinom(n4,k,p1)
+mibinomial5<- rbinom(n5,k,p1)
+mibinomial6<- rbinom(n6,k,p1)
+```
+
+##### $n_1 = 100$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+##### $n_2 = 500$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_3 = 1000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_4 = 5000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_5 = 10000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n5, " Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_6 = 15000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n2," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n3," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n4," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n5," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n6," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n5, " Binomial")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+#### Variando $p=0.3$
+
+
+```{r}
+mibinomial1<- rbinom(n1,k,p2)
+mibinomial2<- rbinom(n2,k,p2)
+mibinomial3<- rbinom(n3,k,p2)
+mibinomial4<- rbinom(n4,k,p2)
+mibinomial5<- rbinom(n5,k,p2)
+mibinomial6<- rbinom(n6,k,p2)
+```
+
+##### $n_1 = 100$
+
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+##### $n_2 = 500$
+
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_3 = 1000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_4 = 5000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_5 = 10000$
+
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n5, " Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_6 = 15000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n2," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n3," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n4," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n5," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n6," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n5, " Binomial")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+#### Variando $p=0.45$
+
+```{r}
+mibinomial1<- rbinom(n1,k,p3)
+mibinomial2<- rbinom(n2,k,p3)
+mibinomial3<- rbinom(n3,k,p3)
+mibinomial4<- rbinom(n4,k,p3)
+mibinomial5<- rbinom(n5,k,p3)
+mibinomial6<- rbinom(n6,k,p3)
+```
+
+##### $n_1 = 100$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+##### $n_2 = 500$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_3 = 1000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_4 = 5000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_5 = 10000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n5, " Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_6 = 15000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n2," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n3," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n4," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n5," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n6," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n5, " Binomial")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+#### Variando $p=0.8$
+
+```{r}
+mibinomial1<- rbinom(n1,k,p4)
+mibinomial2<- rbinom(n2,k,p4)
+mibinomial3<- rbinom(n3,k,p4)
+mibinomial4<- rbinom(n4,k,p4)
+mibinomial5<- rbinom(n5,k,p4)
+mibinomial6<- rbinom(n6,k,p4)
+```
+
+##### $n_1 = 100$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+##### $n_2 = 500$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_3 = 1000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_4 = 5000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_5 = 10000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n5, " Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_6 = 15000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n2," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n3," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n4," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n5," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n6," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n5, " Binomial")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+#### Variando $p=0.95$
+
+```{r}
+mibinomial1<- rbinom(n1,k,p5)
+mibinomial2<- rbinom(n2,k,p5)
+mibinomial3<- rbinom(n3,k,p5)
+mibinomial4<- rbinom(n4,k,p5)
+mibinomial5<- rbinom(n5,k,p5)
+mibinomial6<- rbinom(n6,k,p5)
+```
+
+##### $n_1 = 100$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_2 = 500$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_3 = 1000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_4 = 5000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, " Binomial ")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_5 = 10000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n5, " Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_6 = 15000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n2," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n3," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n4," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n5," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+
+
+mititulo1 <- paste0(n6," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n5, " Binomial")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### Comparación de plots con variación de $p$ en $n_6 = 15000$
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+
+mibinomial1<- rbinom(n6,k,p1)
+mibinomial2<- rbinom(n6,k,p2)
+mibinomial3<- rbinom(n6,k,p3)
+mibinomial4<- rbinom(n6,k,p4)
+mibinomial5<- rbinom(n6,k,p5)
+
+mititulo1 <- paste0(n6," Binomial (",k,",",p1,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n6," Binomial (",k,",",p2,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n6," Binomial (",k,",",p3,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n6," Binomial (",k,",",p4,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n6," Binomial (",k,",",p5,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### Comparación de histogramas con variación de $p$ en $n_6 = 15000$
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0("Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0("Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### Variando $k$ con $p = 0.3$ constante
+
+#### Variando $k = 30$
+
+```{r}
+p <- 0.3
+mibinomial1<- rbinom(n1,k1,p)
+mibinomial2<- rbinom(n2,k1,p)
+mibinomial3<- rbinom(n3,k1,p)
+mibinomial4<- rbinom(n4,k1,p)
+mibinomial5<- rbinom(n5,k1,p)
+mibinomial6<- rbinom(n6,k1,p)
+```
+
+##### $n_1 = 100$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_2 = 500$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_3 = 1000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_4 = 5000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, " Binomial ")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_5 = 10000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n5, " Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_6 = 15000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n2," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n3," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n4," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n5," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n6," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+```
+
+##### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(" Histograma", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n5, " Binomial")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+#### Variando $k = 45$
+
+```{r}
+mibinomial1<- rbinom(n1,k2,p)
+mibinomial2<- rbinom(n2,k2,p)
+mibinomial3<- rbinom(n3,k2,p)
+mibinomial4<- rbinom(n4,k2,p)
+mibinomial5<- rbinom(n5,k2,p)
+mibinomial6<- rbinom(n6,k2,p)
+```
+
+##### $n_1 = 100$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_2 = 500$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_3 = 1000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_4 = 5000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, " Binomial ")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_5 = 10000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n5, " Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_6 = 15000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n2," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n3," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n4," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n5," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n6," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+```
+
+##### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(" Histograma", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n5, " Binomial")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+```{r}
+mibinomial1<- rbinom(n1,k3,p)
+mibinomial2<- rbinom(n2,k3,p)
+mibinomial3<- rbinom(n3,k3,p)
+mibinomial4<- rbinom(n4,k3,p)
+mibinomial5<- rbinom(n5,k3,p)
+mibinomial6<- rbinom(n6,k3,p)
+```
+
+#### Variando $k = 80$
+
+##### $n_1 = 100$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_2 = 500$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_3 = 1000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_4 = 5000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, " Binomial ")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_5 = 10000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n5, " Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_6 = 15000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+```{r}
+mibinomial1<- rbinom(n1,k4,p)
+mibinomial2<- rbinom(n2,k4,p)
+mibinomial3<- rbinom(n3,k4,p)
+mibinomial4<- rbinom(n4,k4,p)
+mibinomial5<- rbinom(n5,k4,p)
+mibinomial6<- rbinom(n6,k4,p)
+```
+##### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n2," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n3," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n4," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n5," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n6," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+```
+
+##### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(" Histograma", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n5, " Binomial")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+#### Variando $k = 95$
+
+##### $n_1 = 100$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_2 = 500$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_3 = 1000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0("Histograma ", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_4 = 5000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n4, " Binomial ")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_5 = 10000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n5, " Binomial ")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### $n_6 = 15000$
+
+```{r}
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+##### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n1)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n2," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n2)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n3," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n3)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n4," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n4)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n5," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n5)
+plot(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n6," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+```
+
+##### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(" Histograma ", n1, " Binomial")
+etiquetay <- paste0("N=",n1)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma ", n2, " Binomial")
+etiquetay <- paste0("N=",n2)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n3, " Binomial")
+etiquetay <- paste0("N=",n3)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma ", n4, " Binomial")
+etiquetay <- paste0("N=",n4)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma ", n5, " Binomial")
+etiquetay <- paste0("N=",n5)
+hist(mibinomial5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma ", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### Comparación de plots con variación de $k$ en $n_6 = 15000$
+
+```{r fig.width=14, fig.height=16}
+mibinomial1<- rbinom(n6,k1,p)
+mibinomial2<- rbinom(n6,k2,p)
+mibinomial3<- rbinom(n6,k3,p)
+mibinomial4<- rbinom(n6,k4,p)
+par(mfrow=c(2,2))
+mititulo1 <- paste0(n6," Binomial (",k1,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n6," Binomial (",k2,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n6," Binomial (",k3,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n6," Binomial (",k4,",",p,")")
+etiquetay <- paste0("N=",n6)
+plot(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+### Comparación de histogramas con diferentes $k$ en $n_6=15000$
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(2,2))
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(" Histograma", n6, " Binomial")
+etiquetay <- paste0("N=",n6)
+hist(mibinomial4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de binomial"),
+     ylab = etiquetay)
+```
+
+
+
+## Generación Poisson
+
+$\lambda= 0.15, 0.30, 0.5, 0.70, 0.85$
+
+```{r}
+n1<- 100
+n2<- 500
+n3<- 1000
+n4<- 5000
+n5<- 10000
+n6<- 15000
+milambda1 <- 0.75
+milambda2 <- 0.15
+milambda3 <- 0.30
+milambda4 <- 0.50
+milambda5 <- 0.70
+milambda6 <- 0.85
+```
+
+### Variando $\lambda=0.75$
+
+```{r}
+mipoisson1 <- rpois(n1,milambda1)      # Poisson1
+mipoisson2 <- rpois(n2,milambda1)      # Poisson2
+mipoisson3 <- rpois(n3,milambda1)      # Poisson3
+mipoisson4 <- rpois(n4,milambda1)      # Poisson4
+mipoisson5 <- rpois(n5,milambda1)      # Poisson5
+mipoisson6 <- rpois(n6,milambda1)      # Poisson6
+```
+
+#### $n_1 = 100$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n1,",",milambda1,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda1, ")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda1,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+
+#### $n_2 = 500$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n2,",",milambda1,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda1, ")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda1,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_3 = 1,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n3,",",milambda1,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda1, ")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda1,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_4 = 5,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n4,",",milambda1,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda1, ")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda1,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_5 = 10,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n5,",",milambda1,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda1, ")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda1,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_6 = 15,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n6,",",milambda1,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda1, ")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda1,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda1, ")")
+etiquetay <- paste0("Poisson(",n1,",",milambda1,")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda1, ")")
+etiquetay <- paste0("Poisson(",n2,",",milambda1,")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda1, ")")
+etiquetay <- paste0("Poisson(",n3,",",milambda1,")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda1, ")")
+etiquetay <- paste0("Poisson(",n4,",",milambda1,")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda1, ")")
+etiquetay <- paste0("Poisson(",n5,",",milambda1,")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda1, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda1,")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+```
+
+
+#### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+etiquetay <- paste0("Poisson(",n1,",",milambda1,")")
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda1,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda1,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda1,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda1,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda1,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda1,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+
+```
+
+
+### Variando $\lambda=0.15$
+
+```{r}
+mipoisson1 <- rpois(n1,milambda2)      # Poisson1
+mipoisson2 <- rpois(n2,milambda2)      # Poisson2
+mipoisson3 <- rpois(n3,milambda2)      # Poisson3
+mipoisson4 <- rpois(n4,milambda2)      # Poisson4
+mipoisson5 <- rpois(n5,milambda2)      # Poisson5
+mipoisson6 <- rpois(n6,milambda2)      # Poisson6
+```
+
+#### $n_1 = 100$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n1,",",milambda2,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda2, ")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda2,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+
+#### $n_2 = 500$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n2,",",milambda2,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda2, ")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda2,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_3 = 1,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n3,",",milambda2,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda2, ")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda2,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_4 = 5,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n4,",",milambda2,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda2, ")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda2,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_5 = 10,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n5,",",milambda2,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda2, ")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda2,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_6 = 15,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n6,",",milambda2,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda2, ")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda2,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda2, ")")
+etiquetay <- paste0("Poisson(",n1,",",milambda2,")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda2, ")")
+etiquetay <- paste0("Poisson(",n2,",",milambda2,")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda2, ")")
+etiquetay <- paste0("Poisson(",n3,",",milambda2,")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda2, ")")
+etiquetay <- paste0("Poisson(",n4,",",milambda2,")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda2, ")")
+etiquetay <- paste0("Poisson(",n5,",",milambda2,")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda2, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda2,")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+```
+
+
+#### Comparación de histogramas
+
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+etiquetay <- paste0("Poisson(",n1,",",milambda2,")")
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda2,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda2,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda2,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda2,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda2,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda2,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+
+```
+
+
+### Variando $\lambda=0.30$
+
+```{r}
+mipoisson1 <- rpois(n1,milambda3)      # Poisson1
+mipoisson2 <- rpois(n2,milambda3)      # Poisson2
+mipoisson3 <- rpois(n3,milambda3)      # Poisson3
+mipoisson4 <- rpois(n4,milambda3)      # Poisson4
+mipoisson5 <- rpois(n5,milambda3)      # Poisson5
+mipoisson6 <- rpois(n6,milambda3)      # Poisson6
+```
+
+#### $n_1 = 100$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n1,",",milambda3,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda3, ")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda3,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+
+#### $n_2 = 500$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n2,",",milambda3,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda3, ")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda3,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_3 = 1,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n3,",",milambda3,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda3, ")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda3,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_4 = 5,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n4,",",milambda3,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda3, ")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda3,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_5 = 10,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n5,",",milambda3,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda3, ")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda3,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_6 = 15,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n6,",",milambda3,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda3, ")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda3,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda3, ")")
+etiquetay <- paste0("Poisson(",n1,",",milambda3,")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda3, ")")
+etiquetay <- paste0("Poisson(",n2,",",milambda3,")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda3, ")")
+etiquetay <- paste0("Poisson(",n3,",",milambda3,")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda3, ")")
+etiquetay <- paste0("Poisson(",n4,",",milambda3,")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda3, ")")
+etiquetay <- paste0("Poisson(",n5,",",milambda3,")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda3, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda3,")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+```
+
+
+#### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+etiquetay <- paste0("Poisson(",n1,",",milambda3,")")
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda3,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda3,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda3,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda3,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda3,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda3,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+
+```
+
+
+### Variando $\lambda=0.50$
+
+```{r}
+mipoisson1 <- rpois(n1,milambda4)      # Poisson1
+mipoisson2 <- rpois(n2,milambda4)      # Poisson2
+mipoisson3 <- rpois(n3,milambda4)      # Poisson3
+mipoisson4 <- rpois(n4,milambda4)      # Poisson4
+mipoisson5 <- rpois(n5,milambda4)      # Poisson5
+mipoisson6 <- rpois(n6,milambda4)      # Poisson6
+```
+
+#### $n_1 = 100$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n1,",",milambda4,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda4, ")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda4,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+
+#### $n_2 = 500$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n2,",",milambda4,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda4, ")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda4,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_3 = 1,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n3,",",milambda4,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda4, ")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda4,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_4 = 5,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n4,",",milambda4,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda4, ")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda4,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_5 = 10,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n5,",",milambda4,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda4, ")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda4,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_6 = 15,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n6,",",milambda4,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda4, ")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda4,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda4, ")")
+etiquetay <- paste0("Poisson(",n1,",",milambda4,")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda4, ")")
+etiquetay <- paste0("Poisson(",n2,",",milambda4,")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda4, ")")
+etiquetay <- paste0("Poisson(",n3,",",milambda4,")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda4, ")")
+etiquetay <- paste0("Poisson(",n4,",",milambda4,")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda4, ")")
+etiquetay <- paste0("Poisson(",n5,",",milambda4,")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda4, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda4,")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+```
+
+
+#### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+etiquetay <- paste0("Poisson(",n1,",",milambda4,")")
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda4,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda4,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda4,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda4,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda4,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda4,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+
+```
+
+
+### Variando $\lambda=0.70$
+
+```{r}
+mipoisson1 <- rpois(n1,milambda5)      # Poisson1
+mipoisson2 <- rpois(n2,milambda5)      # Poisson2
+mipoisson3 <- rpois(n3,milambda5)      # Poisson3
+mipoisson4 <- rpois(n4,milambda5)      # Poisson4
+mipoisson5 <- rpois(n5,milambda5)      # Poisson5
+mipoisson6 <- rpois(n6,milambda5)      # Poisson6
+```
+
+#### $n_1 = 100$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n1,",",milambda5,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda5, ")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda5,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+
+#### $n_2 = 500$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n2,",",milambda5,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda5, ")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda5,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_3 = 1,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n3,",",milambda5,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda5, ")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda5,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_4 = 5,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n4,",",milambda5,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda5, ")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda5,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_5 = 10,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n5,",",milambda5,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda5, ")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda5,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_6 = 15,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n6,",",milambda5,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda5, ")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda5,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda5, ")")
+etiquetay <- paste0("Poisson(",n1,",",milambda5,")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda5, ")")
+etiquetay <- paste0("Poisson(",n2,",",milambda5,")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda5, ")")
+etiquetay <- paste0("Poisson(",n3,",",milambda5,")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda5, ")")
+etiquetay <- paste0("Poisson(",n4,",",milambda5,")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda5, ")")
+etiquetay <- paste0("Poisson(",n5,",",milambda5,")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda5, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda5,")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+```
+
+
+#### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+etiquetay <- paste0("Poisson(",n1,",",milambda5,")")
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda5,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda5,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda5,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda5,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda5,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda5,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+
+```
+
+
+### Variando $\lambda=0.85$
+
+```{r}
+mipoisson1 <- rpois(n1,milambda6)      # Poisson1
+mipoisson2 <- rpois(n2,milambda6)      # Poisson2
+mipoisson3 <- rpois(n3,milambda6)      # Poisson3
+mipoisson4 <- rpois(n4,milambda6)      # Poisson4
+mipoisson5 <- rpois(n5,milambda6)      # Poisson5
+mipoisson6 <- rpois(n6,milambda6)      # Poisson6
+```
+
+#### $n_1 = 100$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n1,",",milambda6,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda6, ")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda6,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+
+#### $n_2 = 500$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n2,",",milambda6,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda6, ")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda6,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_3 = 1,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n3,",",milambda6,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda6, ")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda6,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_4 = 5,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n4,",",milambda6,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda6, ")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda6,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_5 = 10,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n5,",",milambda6,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda6, ")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda6,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### $n_6 = 15,000$
+
+```{r fig.width=12, fig.height=4.5}
+par(mar= c(4, 4, 3, 1))
+etiquetay <- paste0("Poisson(",n6,",",milambda6,")")
+par(mfrow=c(1,2))
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda6, ")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda6,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
+
+#### Comparación de plots
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n1, " VA Pois(", n1, ",", milambda6, ")")
+etiquetay <- paste0("Poisson(",n1,",",milambda6,")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n2, " VA Pois(", n2, ",", milambda6, ")")
+etiquetay <- paste0("Poisson(",n2,",",milambda6,")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n3, " VA Pois(", n3, ",", milambda6, ")")
+etiquetay <- paste0("Poisson(",n3,",",milambda6,")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n4, " VA Pois(", n4, ",", milambda6, ")")
+etiquetay <- paste0("Poisson(",n4,",",milambda6,")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+mititulo1 <- paste0(n5, " VA Pois(", n5, ",", milambda6, ")")
+etiquetay <- paste0("Poisson(",n5,",",milambda6,")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda6, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda6,")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+```
+
+
+#### Comparación de histogramas
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+etiquetay <- paste0("Poisson(",n1,",",milambda6,")")
+mititulo1 <- paste0("Histograma ", n1, " VA Pois(", n1, ",", milambda6,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n2, " VA Pois(", n2, ",", milambda6,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n3, " VA Pois(", n3, ",", milambda6,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n4, " VA Pois(", n4, ",", milambda6,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n5, " VA Pois(", n5, ",", milambda6,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda6,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+
+```
+
+
+
+### Comparación de plots con diferentes $\lambda$ en $n_6=15000$
+
+```{r fig.width=14, fig.height=16}
+
+mipoisson1 <- rpois(n6,milambda1)      # Poisson1
+mipoisson2 <- rpois(n6,milambda2)      # Poisson2
+mipoisson3 <- rpois(n6,milambda3)      # Poisson3
+mipoisson4 <- rpois(n6,milambda4)      # Poisson4
+mipoisson5 <- rpois(n6,milambda5)      # Poisson5
+mipoisson6 <- rpois(n6,milambda6)      # Poisson6
+
+par(mfrow=c(3,2))
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda1, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda1,")")
+plot(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda2, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda2,")")
+plot(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda3, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda3,")")
+plot(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda4, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda4,")")
+plot(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda5, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda5,")")
+plot(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+
+mititulo1 <- paste0(n6, " VA Pois(", n6, ",", milambda6, ")")
+etiquetay <- paste0("Poisson(",n6,",",milambda6,")")
+plot(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("Num de VA"),
+     ylab = etiquetay)
+
+```
+
+### Comparación de histogramas con diferentes lambdas en $n_6=15000$
+
+```{r fig.width=14, fig.height=16}
+par(mfrow=c(3,2))
+etiquetay <- paste0("Poisson(",n6,",",milambda1,")")
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda1,")")
+hist(mipoisson1,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+
+
+etiquetay <- paste0("Poisson(",n6,",",milambda2,")")
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda2,")")
+hist(mipoisson2,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+
+
+etiquetay <- paste0("Poisson(",n6,",",milambda3,")")
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda3,")")
+hist(mipoisson3,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+
+
+etiquetay <- paste0("Poisson(",n6,",",milambda4,")")
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda4,")")
+hist(mipoisson4,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+
+
+etiquetay <- paste0("Poisson(",n6,",",milambda5,")")
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda5,")")
+hist(mipoisson5,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+
+
+etiquetay <- paste0("Poisson(",n6,",",milambda6,")")
+mititulo1 <- paste0("Histograma ", n6, " VA Pois(", n6, ",", milambda6,")")
+hist(mipoisson6,main=mititulo1,
+     col = "lightgreen",
+     xlab = paste0("VA generadas"),
+     ylab = etiquetay)
+```
